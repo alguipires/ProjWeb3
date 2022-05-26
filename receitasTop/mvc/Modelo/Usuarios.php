@@ -4,16 +4,27 @@ namespace Modelo;
 use \PDO;
 use \Framework\DW3BancoDeDados;
 
-class Usuario extends Modelo
+class Usuarios extends Modelo
 {
     /*const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
     const BUSCAR_NOME = 'SELECT * FROM usuarios WHERE nome = ?';
-    const INSERIR = 'INSERT INTO usuarios(nome, senha) VALUES (?, ?)';
+    const INSERIR = 'INSERT INTO usuarios(nome, senha) VALUES (?, ?)';*/
     private $id;
     private $nome;
+    private $genero;
+    private $dataNascimento;
+    private $cpf;
+    private $telefone;
+    private $enderecoCep;
+    private $enderecoRua;
+    private $enderecoNumero;
+    private $enderecoCidade;
+    private $enderecoEstado;
+    private $email;
     private $senha;
     private $senhaPlana;
-    private $admin;
+
+    /* construir metodos abaixo */
 
     public function __construct(
         $nome = null,
@@ -100,5 +111,5 @@ class Usuario extends Modelo
             $usuario->senha = $registro['senha'];
         }
         return $usuario;
-    }*/
+    }
 }

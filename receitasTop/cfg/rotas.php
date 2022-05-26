@@ -2,11 +2,11 @@
 
 $rotas = [
     '/' => [
-        'GET' => '\Controlador\PaginaInicialControlador#index',
+        'GET' => '\Controlador\RaizControlador#index',
     ],
 
     '/dashboard' => [
-        'GET' => '\Controlador\PaginaInicialControlador#dashboard',
+        'GET' => '\Controlador\RaizControlador#dashboard',
     ],
 
     '/login' => [
@@ -16,27 +16,42 @@ $rotas = [
         'DELETE' => '\Controlador\LoginControlador#destruir',*/
     ],
 
-    
     '/usuarios' => [
-        'GET' => '\Controlador\UsuarioControlador#buscar',
+        'GET' => '\Controlador\UsuariosControlador#buscar',
+    ],
+
+    '/usuarios/criar' => [
+        'GET' => '\Controlador\UsuariosControlador#criar',
     ],
     
-    /*verificar  */
+    /*verificar  *//*
     '/usuarios/usuariosMeusComentarios' => [
-        'GET' => '\Controlador\UsuarioControlador#usuariosMeusComentarios',
+        'GET' => '\Controlador\UsuariosControlador#usuariosMeusComentarios',
     ],
-    /*
-    '/usuarios/criar' => [
-        'GET' => '\Controlador\UsuarioControlador#criar',
+
+    */
+
+
+
+
+    // REST
+    '/contatos' => [
+        'GET' => '\Controlador\ContatoControlador#index',
+        'POST' => '\Controlador\ContatoControlador#armazenar',
     ],
-    '/reclamacoes' => [
-        'GET' => '\Controlador\ReclamacaoControlador#index',
-        'POST' => '\Controlador\ReclamacaoControlador#armazenar',
+    // REST
+    '/contatos/?' => [
+        'GET' => '\Controlador\ContatoControlador#mostrar',
+        'PATCH' => '\Controlador\ContatoControlador#atualizar',
+        'DELETE' => '\Controlador\ContatoControlador#destruir',
     ],
-    '/reclamacoes/?' => [
-        'PATCH' => '\Controlador\ReclamacaoControlador#atualizar',
+    // NÃO INCLUSO NO REST
+    '/contatos/criar' => [
+        'GET' => '\Controlador\ContatoControlador#criar',
     ],
-    '/reclamacoes/criar' => [
-        'GET' => '\Controlador\ReclamacaoControlador#criar',
-    ],*/
+    // NÃO INCLUSO NO REST
+    '/contatos/?/editar' => [
+        'GET' => '\Controlador\ContatoControlador#editar',
+    ],
+
 ];

@@ -49,7 +49,7 @@
                                 <label for='password'>Preencha com sua senha</label>
                             </div>
                             <label id="flutuar-esqueceu-senha">
-                                <a class="blue-text" href="cadUser.html"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>
+                                <a class="blue-text" href="<?= URL_RAIZ . 'usuarios/criar' ?>"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>
                                 <a class="blue-text" href="forgotAcess.html"><b>Esqueci minha senha?</b></a>
                             </label>
                         </div>

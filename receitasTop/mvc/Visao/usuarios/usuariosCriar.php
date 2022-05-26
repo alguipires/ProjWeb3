@@ -1,5 +1,3 @@
-/*pagina de criação de novo usuario*/
-
     <!--Main inicio-->
     <!--Texto instuitivo -->
     <div class="row">
@@ -95,6 +93,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
+                            <i class="material-icons prefix">location_city</i>
                             <input id="input-city" type="text" class="validate" maxlength="60" pattern=""
                                 placeholder="Ex.: Guarapuava">
                             <label for="input-city">Cidade</label>
@@ -103,11 +102,6 @@
                             <input id="input-state" type="text" class="validate" maxlength="40" pattern=""
                                 placeholder="Ex.: Paraná">
                             <label for="input-state">Estado</label>
-                        </div>
-                        <div class="input-field col s4">
-                            <input id="input-country" type="text" class="validate" maxlength="40" pattern=""
-                                placeholder="Ex.: Brasil">
-                            <label for="input-country">Pais</label>
                         </div>
                     </div>
                 </div>

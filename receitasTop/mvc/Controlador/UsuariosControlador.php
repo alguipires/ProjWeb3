@@ -1,13 +1,18 @@
 <?php
 namespace Controlador;
 
-use \Modelo\Usuario;
+use \Modelo\Usuarios;
 
-class UsuarioControlador extends Controlador
+class UsuariosControlador extends Controlador
 {
     public function buscar()
     {
         $this->visao('usuarios/usuarios.php');
+    }
+
+    public function criar()
+    {
+        $this->visao('usuarios/usuariosCriar.php');
     }
 
     public function usuariosMeusComentarios()

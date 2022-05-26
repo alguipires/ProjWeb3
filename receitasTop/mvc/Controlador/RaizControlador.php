@@ -1,9 +1,9 @@
 <?php
 namespace Controlador;
 
-use \Modelo\PaginaInicial;
+/*use \Modelo\PaginaInicial; verificar se precisa*/
 
-class PaginaInicialControlador extends Controlador
+class RaizControlador extends Controlador
 {
     public function index()
     {
