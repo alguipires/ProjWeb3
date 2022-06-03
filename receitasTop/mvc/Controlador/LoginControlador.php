@@ -6,12 +6,10 @@ use \Framework\DW3Sessao;
 
 class LoginControlador extends Controlador
 {
-    
-     public function login()
+    public function criar()
     {
-        $this->visao('login/login.php');
+        $this->visao('login/criar.php');
     }
-    /*
 
     public function armazenar()
     {
@@ -32,5 +30,5 @@ class LoginControlador extends Controlador
     {
         DW3Sessao::deletar('usuario');
         $this->redirecionar(URL_RAIZ . 'login');
-    } */
+    }
 }

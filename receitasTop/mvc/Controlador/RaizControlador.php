@@ -1,8 +1,6 @@
 <?php
 namespace Controlador;
 
-/*use \Modelo\PaginaInicial; verificar se precisa*/
-
 class RaizControlador extends Controlador
 {
     public function index()

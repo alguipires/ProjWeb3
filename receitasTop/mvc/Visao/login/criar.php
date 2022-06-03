@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="z-depth-1 grey lighten-4 row div-login">
 
-                    <form class="col s12" method="post">
+                    <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="col s12">
                         <div class='row'>
                             <div class='col s12'>
                             </div>

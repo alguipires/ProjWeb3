@@ -4,7 +4,7 @@ namespace Modelo;
 use \PDO;
 use \Framework\DW3BancoDeDados;
 
-class Usuarios extends Modelo
+class Usuario extends Modelo
 {
     /*const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
     const BUSCAR_NOME = 'SELECT * FROM usuarios WHERE nome = ?';

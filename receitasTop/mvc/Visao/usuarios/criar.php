@@ -1,3 +1,6 @@
+    <!--carregando script cep-->
+    <script type="text/javascript" src="<?= URL_JS . 'usuarios.js' ?>"></script>
+    <!--fim carregando script cep-->
     <!--Main inicio-->
     <!--Texto instuitivo -->
     <div class="row">
@@ -17,7 +20,7 @@
 
     <div class="container">
         <div class="row">
-            <form id="form-curriculo" class="col s12">
+            <form action="<?= URL_RAIZ . 'usuarios' ?>" method="post" id="form-usuario" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
@@ -76,32 +79,32 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
-                            <input id="input-cep" type="tel" class="validate" maxlength="15"
-                                pattern="/^[0-9]{5}+-+[0-9]{3}$/" placeholder="Ex.: 85010-100">
+                            <input id="cep" type="text" class="validate" maxlength="9" placeholder="Ex.: 85010-100" onblur="pesquisacep(this.value);">
+                            <!--pattern="/^[0-9]{5}+-+[0-9]{3}$/"-->
                             <label for="input-cep">Cep</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="input-street" type="text" class="validate" maxlength="40" pattern=""
+                            <input id="rua" type="text" class="validate" maxlength="40" pattern=""
                                 placeholder="Ex.: Rua. XV de Novembro">
-                            <label for="input-street">Rua</label>
+                            <label for="rua">Rua</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="input-number-home" type="text" class="validate" maxlength="10" pattern=""
+                            <input id="numero" type="text" class="validate" maxlength="10" pattern=""
                                 placeholder="Ex.: 000">
-                            <label for="input-number-home">Numero</label>
+                            <label for="numero">Numero</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
-                            <input id="input-city" type="text" class="validate" maxlength="60" pattern=""
+                            <input id="cidade" type="text" class="validate" maxlength="60" pattern=""
                                 placeholder="Ex.: Guarapuava">
-                            <label for="input-city">Cidade</label>
+                            <label for="cidade">Cidade</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="input-state" type="text" class="validate" maxlength="40" pattern=""
+                            <input id="uf" type="text" class="validate" maxlength="40" pattern=""
                                 placeholder="Ex.: Paraná">
-                            <label for="input-state">Estado</label>
+                            <label for="uf">Estado</label>
                         </div>
                     </div>
                 </div>

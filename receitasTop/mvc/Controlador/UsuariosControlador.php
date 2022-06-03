@@ -5,22 +5,6 @@ use \Modelo\Usuarios;
 
 class UsuariosControlador extends Controlador
 {
-    public function buscar()
-    {
-        $this->visao('usuarios/usuarios.php');
-    }
-
-    public function criar()
-    {
-        $this->visao('usuarios/usuariosCriar.php');
-    }
-
-    public function usuariosMeusComentarios()
-    {
-        $this->visao('usuarios/usuariosMeusComentarios.php');
-    }
-
-    /*
     public function criar()
     {
         $this->visao('usuarios/criar.php');
@@ -30,11 +14,17 @@ class UsuariosControlador extends Controlador
     {
         $usuario = new Usuario($_POST['nome'], $_POST['senha']);
         $usuario->salvar();
-        $this->redirecionar(URL_RAIZ . 'usuarios/sucesso');
+        $this->redirecionar(URL_RAIZ . 'usuarios/sucesso');/*verificar para tornar msg flash */
     }
 
     public function sucesso()
     {
+        /*verificar para tornar msg flash */
         $this->visao('usuarios/sucesso.php');
-    }*/
+    }
+
+    public function usuariosMeusComentarios()
+    {
+        $this->visao('usuarios/usuariosMeusComentarios.php');
+    }
 }

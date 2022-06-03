@@ -1,6 +1,7 @@
 <?php
 
 $rotas = [
+    /*comum */
     '/' => [
         'GET' => '\Controlador\RaizControlador#index',
     ],
@@ -10,48 +11,40 @@ $rotas = [
     ],
 
     '/login' => [
-        'GET' => '\Controlador\LoginControlador#login',
-        /*
-        'POST' => '\Controlador\LoginControlador#armazenar',
-        'DELETE' => '\Controlador\LoginControlador#destruir',*/
+        'GET' => '\Controlador\LoginControlador#criar', /*login \criar - mostra formulario para fazer o login */
+        'POST' => '\Controlador\LoginControlador#armazenar', /*armazenar- vai fazer o login em si */
+        'DELETE' => '\Controlador\LoginControlador#destruir', /* \destruir- vai deslogar o usuario */
     ],
-
+    
+    /*usuarrios */
     '/usuarios' => [
-        'GET' => '\Controlador\UsuariosControlador#buscar',
+        'POST' => '\Controlador\UsuariosControlador#armazenar', /*armazenar - qunado cria o usuario */
     ],
 
     '/usuarios/criar' => [
-        'GET' => '\Controlador\UsuariosControlador#criar',
+        'GET' => '\Controlador\UsuariosControlador#criar',/*buscar criar- mostra formulario para fazer criação de um novo usuario*/
+    ],
+
+    '/usuarios/?' => [
+        'PATCH' => '\Controlador\UsuariosControlador#atualizar', /*atualizar - busca e edita o usuario */
     ],
     
-    /*verificar  *//*
-    '/usuarios/usuariosMeusComentarios' => [
-        'GET' => '\Controlador\UsuariosControlador#usuariosMeusComentarios',
+    '/usuarios/?/usuariosMeusComentarios' => [
+        'PATCH' => '\Controlador\UsuariosControlador#usuariosMeusComentarios', /*atualizar - busca e edita o comentario */
+    ],
+    
+    /*receitas */
+    '/receitas' => [
+        'GET' => '\Controlador\ReceitasControlador#index', /*index- listagem de receitas*/
+        'POST' => '\Controlador\ReceitasControlador#armazenar', /*armazenar - qunado cria a receita */
     ],
 
-    */
-
-
-
-
-    // REST
-    '/contatos' => [
-        'GET' => '\Controlador\ContatoControlador#index',
-        'POST' => '\Controlador\ContatoControlador#armazenar',
+    '/receitas/?' => [
+        'PATCH' => '\Controlador\ReceitasControlador#atualizar', /*atualizar - busca e edita a receita */
     ],
-    // REST
-    '/contatos/?' => [
-        'GET' => '\Controlador\ContatoControlador#mostrar',
-        'PATCH' => '\Controlador\ContatoControlador#atualizar',
-        'DELETE' => '\Controlador\ContatoControlador#destruir',
-    ],
-    // NÃO INCLUSO NO REST
-    '/contatos/criar' => [
-        'GET' => '\Controlador\ContatoControlador#criar',
-    ],
-    // NÃO INCLUSO NO REST
-    '/contatos/?/editar' => [
-        'GET' => '\Controlador\ContatoControlador#editar',
+    
+    '/receitas/criar' => [
+        'GET' => '\Controlador\ReceitasControlador#criar', /*criar - mostra formulario para fazer criação de uma nova receita*/
     ],
 
 ];

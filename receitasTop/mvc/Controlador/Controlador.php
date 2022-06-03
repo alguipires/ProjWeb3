@@ -5,8 +5,7 @@ use \Framework\DW3Controlador;
 
 abstract class Controlador extends DW3Controlador
 {
-    /*
-      protected $usuario;
+    protected $usuario;
 
 	protected function verificarLogado($admin = false)
     {
@@ -26,5 +25,5 @@ abstract class Controlador extends DW3Controlador
         	$this->usuario = Usuario::buscarId($usuarioId);
         }
         return $this->usuario;
-    } */
+    }
 }
