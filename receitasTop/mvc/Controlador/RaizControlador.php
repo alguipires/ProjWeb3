@@ -5,20 +5,15 @@ class RaizControlador extends Controlador
 {
     public function index()
     {
-       //$paginainicial = PaginaInicial::buscarVitrine();
         $this->visao('inicial/index.php');
+        //$this->verificarLogado();
+        /*$this->visao('inicial/index.php', [
+            'mensagem' => DW3Sessao::getFlash('mensagem', null)
+        ]);*/
     }
 
     public function dashboard()
     {
         $this->visao('dashboard/dashboard.php');
     }
-
-    /*public function armazenar()
-    {
-        $mensagem = new Mensagem($_POST['usuario'], $_POST['texto']);
-        $mensagem->salvar();
-        $this->redirecionar(URL_RAIZ);
-    }
-    }*/
 }

@@ -13,13 +13,13 @@ class LoginControlador extends Controlador
 
     public function armazenar()
     {
-        $usuario = Usuario::buscarNome($_POST['nome']);
+        $usuario = Usuario::buscarEmail($_POST['email']);
         if ($usuario && $usuario->verificarSenha($_POST['senha'])) {
             DW3Sessao::set('usuario', $usuario->getId());
             if ($usuario->isAdmin()) {
-                $this->redirecionar(URL_RAIZ . 'reclamacoes');
+                $this->redirecionar(URL_RAIZ);/*verificar pagina adm */
             } else {
-                $this->redirecionar(URL_RAIZ . 'reclamacoes/criar');
+                $this->redirecionar(URL_RAIZ);/*verificar pagina usuario comum */
             }
         } else {
             $this->visao('login/criar.php');

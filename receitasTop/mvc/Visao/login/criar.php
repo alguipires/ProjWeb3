@@ -45,8 +45,8 @@
 
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <input class='validate' type='password' name='password' id='password' required/>
-                                <label for='password'>Preencha com sua senha</label>
+                                <input class='validate' type='password' name='senha ' id='senha' required/>
+                                <label for='senha'>Preencha com sua senha</label>
                             </div>
                             <label id="flutuar-esqueceu-senha">
                                 <a class="blue-text" href="<?= URL_RAIZ . 'usuarios/criar' ?>"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>

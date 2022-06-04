@@ -6,33 +6,28 @@ use \Framework\DW3BancoDeDados;
 
 class Usuario extends Modelo
 {
-    /*const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
-    const BUSCAR_NOME = 'SELECT * FROM usuarios WHERE nome = ?';
-    const INSERIR = 'INSERT INTO usuarios(nome, senha) VALUES (?, ?)';*/
+    const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
+    const BUSCAR_EMAIL = 'SELECT * FROM usuarios WHERE email = ?';
+    const INSERIR = 'INSERT INTO usuarios(nome, cpf, email, senha) VALUES (?, ?, ?, ?)';
     private $id;
     private $nome;
-    private $genero;
-    private $dataNascimento;
     private $cpf;
-    private $telefone;
-    private $enderecoCep;
-    private $enderecoRua;
-    private $enderecoNumero;
-    private $enderecoCidade;
-    private $enderecoEstado;
     private $email;
     private $senha;
     private $senhaPlana;
-
-    /* construir metodos abaixo */
+    private $admin;
 
     public function __construct(
         $nome = null,
+        $cpf = null,
+        $email = null,
         $senhaPlana = null,
         $id = null,
         $admin = false
     ) {
         $this->nome = $nome;
+        $this->cpf = $cpf;
+        $this->email = $email;
         $this->senhaPlana = $senhaPlana;
         $this->senha = password_hash($senhaPlana, PASSWORD_BCRYPT);
         $this->id = $id;
@@ -49,19 +44,34 @@ class Usuario extends Modelo
         return $this->nome;
     }
 
-    public function isAdmin()
-    {
-        return $this->admin;
-    }
-
     public function setNome($nome)
     {
         $this->nome = $nome;
     }
 
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
     public function verificarSenha($senhaPlana)
     {
         return password_verify($senhaPlana, $this->senha);
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 
     public function salvar()
@@ -71,10 +81,13 @@ class Usuario extends Modelo
 
     public function inserir()
     {
+        
         DW3BancoDeDados::getPdo()->beginTransaction();
         $comando = DW3BancoDeDados::prepare(self::INSERIR);
         $comando->bindValue(1, $this->nome, PDO::PARAM_STR);
-        $comando->bindValue(2, $this->senha, PDO::PARAM_STR);
+        $comando->bindValue(2, $this->cpf, PDO::PARAM_STR);
+        $comando->bindValue(3, $this->email, PDO::PARAM_STR);
+        $comando->bindValue(4, $this->senha, PDO::PARAM_STR);
         $comando->execute();
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();
@@ -94,16 +107,16 @@ class Usuario extends Modelo
         );
     }
 
-    public static function buscarNome($nome)
+    public static function buscarEmail($email)
     {
-        $comando = DW3BancoDeDados::prepare(self::BUSCAR_NOME);
-        $comando->bindValue(1, $nome, PDO::PARAM_STR);
+        $comando = DW3BancoDeDados::prepare(self::BUSCAR_EMAIL);
+        $comando->bindValue(1, $email, PDO::PARAM_STR);
         $comando->execute();
         $registro = $comando->fetch();
         $usuario = null;
         if ($registro) {
             $usuario = new Usuario(
-                $registro['nome'],
+                $registro['email'],
                 null,
                 $registro['id'],
                 $registro['admin']

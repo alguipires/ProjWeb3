@@ -18,6 +18,20 @@ class Receita extends Modelo
     private $usuario;
     private $dataAtendimento;
 
+    /*    id INT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    tempoPreparo INT (3) NOT NULL,
+    dataPublicacao TIMESTAMP NOT NULL,
+    curtidas INT (3) NOT NULL,
+    fotos LONGBLOB NOT NULL,
+    ingrediente TEXT NOT NULL,
+    comoFazer TEXT NOT NULL,
+    usuario_id INT NOT NULL,
+    comentario_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (comentario_id) REFERENCES comentarios(id) */
+
     public function __construct(
         $dataIncidente = null,
         $local = null,

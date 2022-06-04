@@ -20,39 +20,13 @@
 
     <div class="container">
         <div class="row">
-            <form action="<?= URL_RAIZ . 'usuarios' ?>" method="post" id="form-usuario" class="col s12">
+            <form action="<?= URL_RAIZ . 'usuarios' ?>" method="post"  class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="input-name" type="text" class="validate" maxlength="80"
+                        <input id="nome" type="text" class="validate" maxlength="80"
                             pattern="^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$">
-                        <label for="input-name">Nome Completo</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12">
-                        <label for="">Gênero</label>
-                        <p>
-                            <label for="input-gender-masculine">
-                                <input id="input-gender-masculine" name="gender-group" type="radio" value="M" />
-                                <span>Masculino</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input id="input-gender-feminine" name="gender-group" type="radio" value="F" />
-                                <span>Feminino</span>
-                            </label>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">cake</i>
-                        <input id="input-birthdate" type="text" class="datepicker" placeholder="Ex.: 01/01/1990">
-                        <label for="input-birthdate">Data de nascimento</label>
+                        <label for="nome">Nome</label>
                     </div>
                 </div>
 
@@ -67,29 +41,21 @@
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s6">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="input-telefone" type="tel" class="validate" maxlength="15"
-                            pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" placeholder="Ex.: (00) 00000-0000">
-                        <label for="input-telefone">Telefone</label>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
-                            <input id="cep" type="text" class="validate" maxlength="9" placeholder="Ex.: 85010-100" onblur="pesquisacep(this.value);">
+                            <input id="cep" type="text"  maxlength="9" placeholder="Ex.: 85010-100" onblur="pesquisacep(this.value);">
                             <!--pattern="/^[0-9]{5}+-+[0-9]{3}$/"-->
-                            <label for="input-cep">Cep</label>
+                            <label for="cep">Cep</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="rua" type="text" class="validate" maxlength="40" pattern=""
+                            <!--class="validate"-->
+                            <input id="rua" type="text"
                                 placeholder="Ex.: Rua. XV de Novembro">
                             <label for="rua">Rua</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="numero" type="text" class="validate" maxlength="10" pattern=""
+                            <input id="numero" type="text" class="validate" maxlength="10"
                                 placeholder="Ex.: 000">
                             <label for="numero">Numero</label>
                         </div>
@@ -97,12 +63,12 @@
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
-                            <input id="cidade" type="text" class="validate" maxlength="60" pattern=""
+                            <input id="cidade" type="text" class="validate" maxlength="60" 
                                 placeholder="Ex.: Guarapuava">
                             <label for="cidade">Cidade</label>
                         </div>
                         <div class="input-field col s4">
-                            <input id="uf" type="text" class="validate" maxlength="40" pattern=""
+                            <input id="uf" type="text" class="validate" maxlength="40" 
                                 placeholder="Ex.: Paraná">
                             <label for="uf">Estado</label>
                         </div>
@@ -122,14 +88,14 @@
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="input-pasword" type="password" class="validate" maxlength="40" pattern=""
+                        <input id="senha" type="password"  maxlength="40" 
                             placeholder="*************" required>
-                        <label for="input-pasword">Senha</label>
+                        <label for="senha">Senha</label>
                         <span class="helper-text" data-error="Favor digitar uma senha mais forte"
                             data-success="Correto">ajuda</span>
                     </div>
                     <div class="input-field col s6">
-                        <input id="input-pasword-confir" type="password" class="validate" maxlength="40" pattern=""
+                        <input id="input-pasword-confir" type="password" maxlength="40"
                             placeholder="*************" required>
                         <label for="input-pasword-confir">Repita a senha</label>
                         <span class="helper-text" data-error="Favor digitar uma senha mais forte"

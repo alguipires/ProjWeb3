@@ -1,13 +1,9 @@
 CREATE DATABASE projweb3 COLLATE 'utf8_unicode_ci';
 
-
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT NOT NULL AUTO_INCREMENT,
-    nomeCompleto VARCHAR(255) NOT NULL,
-    genero CHAR(1) NOT NULL,
-    dataNascimento TIMESTAMP NOT NULL,
+    nome VARCHAR(255) NOT NULL,
     cpf INT (11) NOT NULL,
-    telefone INT (11) NOT NULL,
     email VARCHAR (255) UNIQUE NOT NULL,
     senha VARCHAR (255) NOT NULL,
     admin BOOLEAN NOT NULL DEFAULT 0,
@@ -55,5 +51,5 @@ CREATE TABLE receitas (
 )
 ENGINE = InnoDB;
 
-INSERT INTO usuarios (nomeCompleto, genero, dataNascimento, cpf, telefone, email, senha, admin) 
-VALUES ('admin', 'M', '1970-01-01', '11111111111', '11111111111', 'admin@admin.com', '$2y$10$/6aH1pW4RKYRFcvKC83JJ.AMSerCItzea57qRHTTLACwRZpkGfs4q', true);
+INSERT INTO usuarios (nome, cpf, email, senha, admin) 
+VALUES ('admin', '11111111111', 'admin@admin.com', '$2y$10$/6aH1pW4RKYRFcvKC83JJ.AMSerCItzea57qRHTTLACwRZpkGfs4q', true);

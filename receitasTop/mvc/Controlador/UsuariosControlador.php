@@ -12,15 +12,10 @@ class UsuariosControlador extends Controlador
 
     public function armazenar()
     {
-        $usuario = new Usuario($_POST['nome'], $_POST['senha']);
+        $usuario = new Usuario($_POST['nome'], $_POST['cpf'], $_POST['email'], $_POST['senha']);
         $usuario->salvar();
-        $this->redirecionar(URL_RAIZ . 'usuarios/sucesso');/*verificar para tornar msg flash */
-    }
-
-    public function sucesso()
-    {
-        /*verificar para tornar msg flash */
-        $this->visao('usuarios/sucesso.php');
+        DW3Sessao::setFlash('mensagem', 'usuario cadastrada com sucesso.');
+        $this->redirecionar(URL_RAIZ);/*verificar para tornar msg flash */
     }
 
     public function usuariosMeusComentarios()
