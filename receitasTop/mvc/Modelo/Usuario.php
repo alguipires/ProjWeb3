@@ -8,7 +8,7 @@ class Usuario extends Modelo
 {
     const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
     const BUSCAR_EMAIL = 'SELECT * FROM usuarios WHERE email = ?';
-    const INSERIR = 'INSERT INTO usuarios(nome, cpf, email, senha) VALUES (?, ?, ?, ?)';
+    const INSERIR = 'INSERT INTO usuarios(nome, cpf, email, senha, admin) VALUES (?, ?, ?, ?, ?)';
     private $id;
     private $nome;
     private $cpf;
@@ -88,6 +88,7 @@ class Usuario extends Modelo
         $comando->bindValue(2, $this->cpf, PDO::PARAM_STR);
         $comando->bindValue(3, $this->email, PDO::PARAM_STR);
         $comando->bindValue(4, $this->senha, PDO::PARAM_STR);
+        $comando->bindValue(5, $this->admin, PDO::PARAM_STR);
         $comando->execute();
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();

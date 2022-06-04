@@ -29,8 +29,8 @@
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="<?= URL_JS . 'materialize.min.js' ?>"></script>
 
-  <!-- meu script // não necessario, carregava menu e footer-->
-  <!--<script type="text/javascript" src="init.js"></script>-->
+  <!-- meu scriptr-->
+  <script type="text/javascript" src="<?= URL_JS . 'indexTemplate.js' ?>"></script>
 
 </head>
 
@@ -39,14 +39,6 @@
   <!-- inicio nav-->
     <div id="menu">
 
-    <script>
-  (function ($) {
-    $(function () {
-      $(".dropdown-trigger").dropdown();
-      $('.sidenav').sidenav();
-    }); // end of document ready
-  })(jQuery); // end of jQuery name space
-</script>
 <!-- inicio nav-->
 <!-- Dropdown Structure
 <ul id="dropdown1" class="dropdown-content purple darken-1">
@@ -76,11 +68,22 @@
                 class="material-icons right">arrow_drop_down</i></a></li>-->
           <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i
                 class="material-icons left">lock</i>Login</a></li>
+
+          <!--botão sair-->
+          <li>
+            <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="inline">
+                <input type="hidden" name="_metodo" value="DELETE">
+                <a class="waves-effect waves-light btn purple darken-4" onclick="event.preventDefault(); this.parentNode.submit()" href="">Sair</a>
+            </form>
+          </li>
+
         </ul>
       </div>
     </div>
   </nav>
 </div>
+
+
 <ul class="sidenav" id="mobile-demo">
   <li>
     <div class="input-field col s6 m6">
@@ -88,14 +91,39 @@
     </div>
     <a href="#"><i class="material-icons left">search</i></a>
   </li>
-  <li><a href="#"><i class="material-icons left">search</i></a></li>
-  <li><a href="aboutReceitastop.html">ReceitasTop/DashBoard</a></li>
-  <li><a href="myPerfil.html">Meu perfil</a></li>
-  <li><a href="myReceitas.html">Minhas receitas</a></li>
-  <li><a class="waves-effect waves-light btn purple darken-4" href="login.html"><i class="material-icons left">lock</i>Login</a></li>
+  <li><a href="<?= URL_RAIZ ?>"><i class="material-icons left">search</i></a></li>
+  <li><a href="<?= URL_RAIZ . 'dashboard' ?>">ReceitasTop/DashBoard</a></li>
+  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meu perfil</a></li>
+  <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i class="material-icons left">lock</i>Login</a></li>
+  <!--botão sair-->
+  <li>
+            <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="inline">
+                <input type="hidden" name="_metodo" value="DELETE">
+                <a class="waves-effect waves-light btn purple darken-4" onclick="event.preventDefault(); this.parentNode.submit()" href="">Sair</a>
+            </form>
+  </li>
 </ul>
+
     </div>
   <!-- fim nav-->
+
+    <!--MODAL MESAGEM FLASH-->
+    <?php if ($mensagem) : ?>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger display-none-edit" href="#modal">Modal</a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <?= $mensagem ?>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-close waves-effect waves-blue btn-flat">Ok</a>
+            </div>
+        </div>
+    <?php endif ?>
+    <!--FIM MODAL MESAGEM FLASH-->
+
+
 
   
 

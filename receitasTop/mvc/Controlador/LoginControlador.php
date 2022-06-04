@@ -8,7 +8,9 @@ class LoginControlador extends Controlador
 {
     public function criar()
     {
-        $this->visao('login/criar.php');
+        $this->visao('login/criar.php', [
+            'mensagem' => DW3Sessao::getFlash('mensagem', null)
+        ]);
     }
 
     public function armazenar()
@@ -17,18 +19,22 @@ class LoginControlador extends Controlador
         if ($usuario && $usuario->verificarSenha($_POST['senha'])) {
             DW3Sessao::set('usuario', $usuario->getId());
             if ($usuario->isAdmin()) {
-                $this->redirecionar(URL_RAIZ);/*verificar pagina adm */
+                DW3Sessao::setFlash('mensagem', 'usuario ADM logado com sucesso.');
+                $this->redirecionar(URL_RAIZ);
             } else {
-                $this->redirecionar(URL_RAIZ);/*verificar pagina usuario comum */
+                DW3Sessao::setFlash('mensagem', 'usuario logado com sucesso.');
+                $this->redirecionar(URL_RAIZ);
             }
-        } else {
-            $this->visao('login/criar.php');
+        } else {//verificar aida dando erro
+            DW3Sessao::setFlash('mensagem', 'usuario não encontrado.');
+            $this->redirecionar(URL_RAIZ . 'login');
         }
     }
 
     public function destruir()
     {
         DW3Sessao::deletar('usuario');
-        $this->redirecionar(URL_RAIZ . 'login');
+        DW3Sessao::setFlash('mensagem', 'usuario deslogado com sucesso.');
+        $this->redirecionar(URL_RAIZ);
     }
 }

@@ -38,14 +38,14 @@
 
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <input id="input-email" type="email" class="validate" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" required>
+                                <input id="email" type="email" name="email" class="validate" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" required>
                                 <label for='email'>Preencha com seu E-mail</label>
                             </div>
                         </div>
 
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <input class='validate' type='password' name='senha ' id='senha' required/>
+                                <input class='validate' type='password' name="senha" id="senha" required/>
                                 <label for='senha'>Preencha com sua senha</label>
                             </div>
                             <label id="flutuar-esqueceu-senha">
