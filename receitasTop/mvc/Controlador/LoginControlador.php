@@ -26,8 +26,10 @@ class LoginControlador extends Controlador
                 $this->redirecionar(URL_RAIZ);
             }
         } else {//verificar aida dando erro
-            DW3Sessao::setFlash('mensagem', 'usuario não encontrado.');
-            $this->redirecionar(URL_RAIZ . 'login');
+            $this->setErros(['login' => 'Usuário ou senha inválido.']);
+            $this->visao('login/criar.php', [
+                'mensagem' => DW3Sessao::setFlash('mensagem', null)
+            ]);
         }
     }
 

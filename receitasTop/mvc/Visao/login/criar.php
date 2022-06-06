@@ -37,20 +37,23 @@
                         </div>
 
                         <div class='row'>
-                            <div class='input-field col s12'>
-                                <input id="email" type="email" name="email" class="validate" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" required>
+                            <div class='input-field <?= $this->getErroCss('login') ?> col s12'>
+                                <input id="email" type="email" name="email" class="validate" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" value="<?= $this->getPost('email') ?>" required>
                                 <label for='email'>Preencha com seu E-mail</label>
                             </div>
                         </div>
 
                         <div class='row'>
-                            <div class='input-field col s12'>
+                            <div class='input-field <?= $this->getErroCss('login') ?> col s12'>
                                 <input class='validate' type='password' name="senha" id="senha" required/>
                                 <label for='senha'>Preencha com sua senha</label>
                             </div>
+                            <div class="card-panel text-center col s12">
+                                <?php $this->incluirVisao('util/formErro.php', ['campo' => 'login']) ?>
+                            </div>
                             <label id="flutuar-esqueceu-senha">
                                 <a class="blue-text" href="<?= URL_RAIZ . 'usuarios/criar' ?>"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>
-                                <a class="blue-text" href="forgotAcess.html"><b>Esqueci minha senha?</b></a>
+                                <a class="blue-text" href="#"><b>Esqueci minha senha?</b></a>
                             </label>
                         </div>
                         </br>

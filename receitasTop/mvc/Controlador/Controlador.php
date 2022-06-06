@@ -7,6 +7,7 @@ use \Framework\DW3Sessao;
 
 abstract class Controlador extends DW3Controlador
 {
+    use ControladorVisao;
     protected $usuario;
 
 	protected function verificarLogado($admin = false)

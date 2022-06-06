@@ -9,7 +9,7 @@ class Receita extends Modelo
     const BUSCAR_ID = 'SELECT * FROM receitas WHERE id = ?';
     //const BUSCAR_NAO_ATENDIDOS = 'SELECT * FROM receitas WHERE data_atendimento IS NULL ORDER BY id';
     const INSERIR = 'INSERT INTO receitas(titulo, tempoPreparo, dataPublicacao, curtidas, fotos, ingrediente, comoFazer, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    //const ATUALIZAR = 'UPDATE receitas SET data_atendimento = ? WHERE id = ?';
+    const ATUALIZAR = 'UPDATE receitas SET data_atendimento = ? WHERE id = ?';
     private $id;
     private $titulo;
     private $tempoPreparo;
@@ -186,7 +186,7 @@ class Receita extends Modelo
         $comando->execute();
     }
 
-    public static function buscarId($id)
+    /*public static function buscarId($id)
     {
         $comando = DW3BancoDeDados::prepare(self::BUSCAR_ID);
         $comando->bindValue(1, $id, PDO::PARAM_INT);
@@ -216,5 +216,5 @@ class Receita extends Modelo
             );
         }
         return $reclamacoes;
-    }
+    }*/
 }

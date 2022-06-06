@@ -33,7 +33,7 @@ class ReceitasControlador extends Controlador
         $receita = new Receita(
             $_POST['titulo'],
             $_POST['tempoPreparo'],
-            setDataPublicacao(),
+            Receita::setDataPublicacao(),
             null,
             $_POST['fotos'],
             $_POST['ingrediente'],
