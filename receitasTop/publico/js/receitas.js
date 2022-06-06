@@ -1,6 +1,7 @@
 (function ($) {
     $(function () {
 
+        //VISUALIZAÇÃO*************************************
         //Carousel inicialização
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
@@ -16,6 +17,13 @@
 
         //colapsible ingredientes/como fazer.
         $('.collapsible').collapsible();
+
+        //CADASTRO*************************************
+        //INGREDIENTES
+        $('.chips-placeholder').chips({
+            placeholder: 'ingrediente',
+            secondaryPlaceholder: '+enter',
+        });
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space

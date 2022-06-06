@@ -6,46 +6,40 @@ use \Framework\DW3BancoDeDados;
 
 class Receita extends Modelo
 {
-    const BUSCAR_ID = 'SELECT * FROM reclamacoes WHERE id = ?';
-    const BUSCAR_NAO_ATENDIDOS = 'SELECT * FROM reclamacoes WHERE data_atendimento IS NULL ORDER BY id';
-    const INSERIR = 'INSERT INTO reclamacoes(data_incidente, local, descricao, usuario_id) VALUES (?, ?, ?, ?)';
-    const ATUALIZAR = 'UPDATE reclamacoes SET data_atendimento = ? WHERE id = ?';
+    const BUSCAR_ID = 'SELECT * FROM receitas WHERE id = ?';
+    //const BUSCAR_NAO_ATENDIDOS = 'SELECT * FROM receitas WHERE data_atendimento IS NULL ORDER BY id';
+    const INSERIR = 'INSERT INTO receitas(titulo, tempoPreparo, dataPublicacao, curtidas, fotos, ingrediente, comoFazer, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    //const ATUALIZAR = 'UPDATE receitas SET data_atendimento = ? WHERE id = ?';
     private $id;
-    private $dataIncidente;
-    private $local;
-    private $descricao;
-    private $usuarioId;
-    private $usuario;
-    private $dataAtendimento;
-
-    /*    id INT NOT NULL AUTO_INCREMENT,
-    titulo VARCHAR(255) NOT NULL,
-    tempoPreparo INT (3) NOT NULL,
-    dataPublicacao TIMESTAMP NOT NULL,
-    curtidas INT (3) NOT NULL,
-    fotos LONGBLOB NOT NULL,
-    ingrediente TEXT NOT NULL,
-    comoFazer TEXT NOT NULL,
-    usuario_id INT NOT NULL,
-    comentario_id INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (comentario_id) REFERENCES comentarios(id) */
+    private $titulo;
+    private $tempoPreparo;
+    private $dataPublicacao;
+    private $curtidas;
+    private $fotos;
+    private $ingrediente;
+    private $comoFazer;
+    private $usuario_id;
 
     public function __construct(
-        $dataIncidente = null,
-        $local = null,
-        $descricao = null,
-        $usuarioId = null,
         $id = null,
-        $dataAtendimento = null
+        $titulo = null,
+        $tempoPreparo = null,
+        $dataPublicacao = null,
+        $curtidas = null,
+        $fotos = null,
+        $ingrediente = null,
+        $comoFazer = null,
+        $usuario_id = null
     ) {
-        $this->setDataIncidente($dataIncidente);
-        $this->local = $local;
-        $this->descricao = $descricao;
-        $this->usuarioId = $usuarioId;
         $this->id = $id;
-        $this->dataAtendimento = $dataAtendimento;
+        $this->titulo = $titulo;
+        $this->tempoPreparo = $tempoPreparo;
+        $this->dataPublicacao = $dataPublicacao;
+        $this->curtidas = $curtidas;
+        $this->fotos = $fotos;
+        $this->ingrediente = $ingrediente;
+        $this->comoFazer = $comoFazer;
+        $this->usuario_id = $usuario_id;
     }
 
     public function getId()
@@ -53,36 +47,96 @@ class Receita extends Modelo
         return $this->id;
     }
 
-    public function getDataIncidente()
+    public function getTitulo()
     {
-        return $this->dataIncidente;
+        return $this->titulo;
     }
 
-    public function getDataIncidenteFormatada()
+    public function setTitulo($titulo)
     {
-        $data = date_create($this->dataIncidente);
+        return $this->titulo = $titulo;
+    }
+
+    public function getTempoPreparo()
+    {
+        return $this->tempoPreparo;
+    }
+
+    public function setTempoPreparo($tempoPreparo)
+    {
+        return $this->tempoPreparo = $tempoPreparo;
+    }
+
+    public function getDataPublicacao()
+    {
+        return $this->dataPublicacao;
+    }
+
+    public function setDataPublicacao()
+    {
+        return $this->dataPublicacao = date('d/m/Y');
+    }
+
+    public function getDataPublicacaoFormatada()
+    {
+        $data = date_create($this->dataPublicacao);
         return date_format($data, 'd/m/Y');
         //$data = new \DateTime($this->dataIncidente);
         //return $data->format('d/m/Y');
     }
 
-    public function getLocal()
+    public function getCurtidas()
     {
-        return $this->local;
+        return $this->curtidas;
     }
 
-    public function getDescricao()
+    public function setCurtidas($curtidas)
     {
-        return $this->descricao;
+        return $this->curtidas = $curtidas;
     }
 
-    public function getUsuario()
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+    public function setFotos($fotos)
+    {
+        return $this->fotos = $fotos;
+    }
+
+    public function getIngrediente()
+    {
+        return $this->ingrediente;
+    }
+
+    public function setIngrediente($ingrediente)
+    {
+        return $this->ingrediente = $ingrediente;
+    }
+
+    public function getComoFazer()
+    {
+        return $this->comoFazer;
+    }
+
+    public function setComoFazer($comoFazer)
+    {
+        return $this->comoFazer = $comoFazer;
+    }
+
+    public function getUsuario_id()
+    {
+        return $this->usuario_id;
+    }
+
+    /*public function getUsuario()
     {
         if ($this->usuario == null) {
             $this->usuario = Usuario::buscarId($this->usuarioId);
         }
         return $this->usuario;
-    }
+    }*/
 
     public function setDataIncidente($dataIncidente)
     {
@@ -111,10 +165,14 @@ class Receita extends Modelo
     {
         DW3BancoDeDados::getPdo()->beginTransaction();
         $comando = DW3BancoDeDados::prepare(self::INSERIR);
-        $comando->bindValue(1, $this->dataIncidente, PDO::PARAM_STR);
-        $comando->bindValue(2, $this->local, PDO::PARAM_STR);
-        $comando->bindValue(3, $this->descricao, PDO::PARAM_STR);
-        $comando->bindValue(4, $this->usuarioId, PDO::PARAM_INT);
+        $comando->bindValue(1, $this->titulo, PDO::PARAM_STR);
+        $comando->bindValue(2, $this->tempoPreparo, PDO::PARAM_STR);
+        $comando->bindValue(3, $this->dataPublicacao, PDO::PARAM_STR);
+        $comando->bindValue(4, $this->curtidas, PDO::PARAM_STR);
+        $comando->bindValue(5, $this->fotos, PDO::PARAM_STR);
+        $comando->bindValue(6, $this->ingrediente, PDO::PARAM_STR);
+        $comando->bindValue(7, $this->comoFazer, PDO::PARAM_STR);
+        $comando->bindValue(8, $this->usuario_id, PDO::PARAM_INT);
         $comando->execute();
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();

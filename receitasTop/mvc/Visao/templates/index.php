@@ -47,7 +47,7 @@
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus dados</a></li>
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus comentarios</a></li>
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Minhas receitas</a></li>
-  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Criar receita</a></li>
+  <li><a href="<?= URL_RAIZ . 'receitas/criar' ?>">Criar receita</a></li>
 </ul>
 
 <div class="navbar-fixed">

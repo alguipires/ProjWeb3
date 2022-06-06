@@ -92,9 +92,10 @@ class Usuario extends Modelo
         $comando->execute();
         $registro = $comando->fetch();
         return new Usuario(
-            $registro['nome'],
-            null,
             $registro['id'],
+            $registro['nome'],
+            $registro['email'],
+            null,
             $registro['admin']
         );
     }

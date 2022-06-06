@@ -1,7 +1,9 @@
 <?php
 namespace Controlador;
 
+use \Modelo\Usuario;
 use \Framework\DW3Controlador;
+use \Framework\DW3Sessao;
 
 abstract class Controlador extends DW3Controlador
 {
@@ -11,6 +13,7 @@ abstract class Controlador extends DW3Controlador
     {
     	$usuario = $this->getUsuario();
         if ($usuario == null || ($admin && !$usuario->isAdmin()) ) {
+            DW3Sessao::setFlash('mensagem', 'Faça login para acessar essa pagina!!');
         	$this->redirecionar(URL_RAIZ . 'login');
         }
     }

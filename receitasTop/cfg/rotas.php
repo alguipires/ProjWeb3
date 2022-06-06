@@ -29,22 +29,26 @@ $rotas = [
         'PATCH' => '\Controlador\UsuariosControlador#atualizar', /*atualizar - busca e edita o usuario */
     ],
     
+    //comentarios verififcar
     '/usuarios/?/usuariosMeusComentarios' => [
         'PATCH' => '\Controlador\UsuariosControlador#usuariosMeusComentarios', /*atualizar - busca e edita o comentario */
     ],
     
     /*receitas */
     '/receitas' => [
-        'GET' => '\Controlador\ReceitasControlador#index', /*index- listagem de receitas*/
-        'POST' => '\Controlador\ReceitasControlador#armazenar', /*armazenar - qunado cria a receita */
+        'POST' => '\Controlador\ReceitasControlador#armazenar', /*armazenar - quando uma cria a receita */
     ],
 
-    '/receitas/?' => [
-        'PATCH' => '\Controlador\ReceitasControlador#atualizar', /*atualizar - busca e edita a receita */
-    ],
-    
     '/receitas/criar' => [
         'GET' => '\Controlador\ReceitasControlador#criar', /*criar - mostra formulario para fazer criação de uma nova receita*/
     ],
+
+    '/receitas/?' => [
+        'GET' => '\Controlador\ReceitasControlador#index', /*index- ´pagina para listagem de uma receita*/
+        'PATCH' => '\Controlador\ReceitasControlador#atualizar', /*atualizar - busca e edita a receita */
+        'DELETE' => '\Controlador\ReceitasControlador#destruir', /*deleta a receita */
+    ],
+
+    //talvez criar uma rota para listar as receitas criadas pelo usuario uma vitrine com as receitas somente do usuario
 
 ];
