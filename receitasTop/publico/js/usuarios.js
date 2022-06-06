@@ -16,8 +16,8 @@
 })(jQuery); // end of jQuery name space
 
 
-//BUSCA DE CEP ****
-
+//BUSCA DE CEP **** DESATIVADO POR NÃO FAZER A TABELA NO BD E MODELO ENDEREÇO
+/*
 function limpa_formulário_cep() {
     //Limpa valores do formulário de cep.
     document.getElementById('rua').value=("");
@@ -91,4 +91,4 @@ else {
     //cep sem valor, limpa formulário.
     limpa_formulário_cep();
 }
-};
+};*/

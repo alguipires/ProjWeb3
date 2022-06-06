@@ -1,3 +1,5 @@
+<!--PAGINA DE CRIAÇÃO DE RECEITAS-->
+
 <!-- meu script -->
 <script type="text/javascript" src="<?= URL_JS . 'receitasNew.js' ?>"></script>
 

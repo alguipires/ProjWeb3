@@ -1,10 +1,5 @@
-<!--<?php if ($mensagem) : ?>
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <?= $mensagem ?>
-    </div>
-<?php endif ?>-->
-  <!--Filtro de pesquisa receitas *****verificar -->
+   <!--PAGINA DE VITRINE E RELATORIO DE BUSCA-->
+
 
   <div class="row">
     <div class="card purple darken-1">

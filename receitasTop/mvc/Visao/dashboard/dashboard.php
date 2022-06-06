@@ -1,4 +1,7 @@
-    <!--Main inicio-->
+   <!--PAGINA DE RELATORIO DASHBOARD-->
+   
+   
+   <!--Main inicio-->
     <!--Quantidades de user e receitas -->
     <div class="row">
         <div class="card purple darken-1">

@@ -1,3 +1,4 @@
+<!--PAGINA PRINCIPAL DO SISTEMA-->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -40,11 +41,14 @@
     <div id="menu">
 
 <!-- inicio nav-->
-<!-- Dropdown Structure
+
+<!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content purple darken-1">
-  <li><a href="myPerfil.html">Meu perfil</a></li>
-  <li><a href="myReceitas.html">Minhas receitas</a></li>
-</ul>-->
+  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus dados</a></li>
+  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus comentarios</a></li>
+  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Minhas receitas</a></li>
+  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Criar receita</a></li>
+</ul>
 
 <div class="navbar-fixed">
   <nav class="purple darken-1">
@@ -62,20 +66,22 @@
           <li><a href="<?= URL_RAIZ ?>"><i class="material-icons left">search</i></a>
           </li>
           <li><a href="<?= URL_RAIZ . 'dashboard' ?>">ReceitasTop/DashBoard</a></li>
-          <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meu perfil</a></li>
-          <!-- Dropdown Trigger
-          <li><a class="dropdown-trigger" href="#" data-target="dropdown1">Meu perfil<i
-                class="material-icons right">arrow_drop_down</i></a></li>-->
-          <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i
-                class="material-icons left">lock</i>Login</a></li>
+          <!-- Dropdown Trigger-->
+          <li><a class="dropdown-trigger" href="<?= URL_RAIZ . 'usuarios' ?>" data-target="dropdown1">Meu perfil<i
+                class="material-icons right">arrow_drop_down</i></a>
+          </li>
 
-          <!--botão sair-->
+          <!--BOTÃo LOGIN E SAIR-->
+          <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i
+                class="material-icons left">lock</i>Login</a>
+          </li>
           <li>
             <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="inline">
                 <input type="hidden" name="_metodo" value="DELETE">
                 <a class="waves-effect waves-light btn purple darken-4" onclick="event.preventDefault(); this.parentNode.submit()" href="">Sair</a>
             </form>
           </li>
+          <!--fim BOTÃo LOGIN E SAIR-->
 
         </ul>
       </div>
@@ -83,7 +89,7 @@
   </nav>
 </div>
 
-
+<!-- MENO MOBILE RESPONSIVO DESATIVADO / OPCIONAL
 <ul class="sidenav" id="mobile-demo">
   <li>
     <div class="input-field col s6 m6">
@@ -95,14 +101,13 @@
   <li><a href="<?= URL_RAIZ . 'dashboard' ?>">ReceitasTop/DashBoard</a></li>
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meu perfil</a></li>
   <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i class="material-icons left">lock</i>Login</a></li>
-  <!--botão sair-->
   <li>
             <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="inline">
                 <input type="hidden" name="_metodo" value="DELETE">
                 <a class="waves-effect waves-light btn purple darken-4" onclick="event.preventDefault(); this.parentNode.submit()" href="">Sair</a>
             </form>
   </li>
-</ul>
+</ul>-->
 
     </div>
   <!-- fim nav-->

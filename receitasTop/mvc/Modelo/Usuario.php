@@ -8,10 +8,9 @@ class Usuario extends Modelo
 {
     const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
     const BUSCAR_EMAIL = 'SELECT * FROM usuarios WHERE email = ?';
-    const INSERIR = 'INSERT INTO usuarios(nome, cpf, email, senha, admin) VALUES (?, ?, ?, ?, ?)';
+    const INSERIR = 'INSERT INTO usuarios(nome, email, senha, admin) VALUES (?, ?, ?, ?)';
     private $id;
     private $nome;
-    private $cpf;
     private $email;
     private $senha;
     private $senhaPlana;
@@ -19,14 +18,12 @@ class Usuario extends Modelo
 
     public function __construct(
         $nome = null,
-        $cpf = null,
         $email = null,
         $senhaPlana = null,
         $id = null,
         $admin = false
     ) {
         $this->nome = $nome;
-        $this->cpf = $cpf;
         $this->email = $email;
         $this->senhaPlana = $senhaPlana;
         $this->senha = password_hash($senhaPlana, PASSWORD_BCRYPT);
@@ -47,11 +44,6 @@ class Usuario extends Modelo
     public function setNome($nome)
     {
         $this->nome = $nome;
-    }
-
-    public function getCpf()
-    {
-        return $this->cpf;
     }
 
     public function getEmail()
@@ -85,10 +77,9 @@ class Usuario extends Modelo
         DW3BancoDeDados::getPdo()->beginTransaction();
         $comando = DW3BancoDeDados::prepare(self::INSERIR);
         $comando->bindValue(1, $this->nome, PDO::PARAM_STR);
-        $comando->bindValue(2, $this->cpf, PDO::PARAM_STR);
-        $comando->bindValue(3, $this->email, PDO::PARAM_STR);
-        $comando->bindValue(4, $this->senha, PDO::PARAM_STR);
-        $comando->bindValue(5, $this->admin, PDO::PARAM_STR);
+        $comando->bindValue(2, $this->email, PDO::PARAM_STR);
+        $comando->bindValue(3, $this->senha, PDO::PARAM_STR);
+        $comando->bindValue(4, $this->admin, PDO::PARAM_STR);
         $comando->execute();
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();

@@ -1,3 +1,5 @@
+<!--PAGINA DE CRIAÇÃO DE USUARIOS-->
+ 
     <!--carregando script cep-->
     <script type="text/javascript" src="<?= URL_JS . 'usuarios.js' ?>"></script>
     <!--fim carregando script cep-->
@@ -30,6 +32,8 @@
                     </div>
                 </div>
 
+                <!--campo cpf desativado por não estar funcinado corretamente, ao cadastrar no bd fica um nuimero aleatorio/ opcional-->
+                <!--
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">doc</i>
@@ -38,18 +42,20 @@
                             placeholder="Ex.: 000.000.000-00">
                         <label for="cpf">Cpf</label>
                     </div>
-                </div>
+                </div>-->
 
+                <!--endereço com busca desativado por não ter classe modelo e tabela bd/ opcional-->
+                <!--
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s4">
                             <i class="material-icons prefix">location_city</i>
                             <input id="cep" name="cep" type="text"  maxlength="9" placeholder="Ex.: 85010-100" onblur="pesquisacep(this.value);">
-                            <!--pattern="/^[0-9]{5}+-+[0-9]{3}$/"-->
+                            pattern="/^[0-9]{5}+-+[0-9]{3}$/"
                             <label for="cep">Cep</label>
                         </div>
                         <div class="input-field col s4">
-                            <!--class="validate"-->
+                            class="validate"
                             <input id="rua" name="rua" type="text"
                                 placeholder="Ex.: Rua. XV de Novembro">
                             <label for="rua">Rua</label>
@@ -73,7 +79,7 @@
                             <label for="uf">Estado</label>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="row">
                     <div class="input-field col s12">
