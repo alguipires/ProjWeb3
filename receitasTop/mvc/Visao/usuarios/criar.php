@@ -26,9 +26,10 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="nome" name="nome" type="text" class="validate" maxlength="80"
+                        <input id="nome" name="nome" type="text" class="validate <?= $this->getErroCss('nome') ?>" value="<?= $this->getPost('nome') ?>" maxlength="80"
                             pattern="^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð'][^\s]*\s*?)(?!.*[ ]$))+$">
                         <label for="nome">Nome</label>
+                        <?php $this->incluirVisao('util/formErro.php', ['campo' => 'nome']) ?>
                     </div>
                 </div>
 
@@ -83,28 +84,25 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" name="email" type="email" class="validate" maxlength="40"
+                        <input id="email" name="email" type="email" class="validate <?= $this->getErroCss('email') ?>" value="<?= $this->getPost('email') ?>" maxlength="40"
                             pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" >
                         <label for="email">Email</label>
-                        <span class="helper-text" data-error="Favor digitar e-mail valido"
-                            data-success="Correto">ajuda</span>
+                        <?php $this->incluirVisao('util/formErro.php', ['campo' => 'email']) ?>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="senha" name="senha" type="password"  maxlength="40" 
-                            placeholder="*************">
+                            placeholder="*************" class="validate <?= $this->getErroCss('senha') ?>">
                         <label for="senha">Senha</label>
-                        <span class="helper-text" data-error="Favor digitar uma senha mais forte"
-                            data-success="Correto">ajuda</span>
+                        <?php $this->incluirVisao('util/formErro.php', ['campo' => 'senha']) ?>
                     </div>
                     <div class="input-field col s6">
                         <input id="senha-confirma" name="senha-confirma" type="password" maxlength="40"
-                            placeholder="*************">
+                            placeholder="*************" class="validate <?= $this->getErroCss('senha') ?>">
                         <label for="senha-confirmar">Repita a senha</label>
-                        <span class="helper-text" data-error="Favor digitar uma senha mais forte"
-                            data-success="Correto"></span>
+                        <?php $this->incluirVisao('util/formErro.php', ['campo' => 'senha']) ?>
                     </div>
                 </div>
 

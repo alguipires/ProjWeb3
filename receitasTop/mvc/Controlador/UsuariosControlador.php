@@ -18,12 +18,19 @@ class UsuariosControlador extends Controlador
     {
         //echo '<script>console.log("ENTROU NO ARMAZENAR")</script>';
         $usuario = new Usuario($_POST['nome'], $_POST['email'], $_POST['senha']);
-        //echo '<script>console.log("CRIOU OBJETO NO ARMAZENAR")</script>';
-        $usuario->salvar();
-        //echo '<script>console.log("SALVOU  NO ARMAZENAR")</script>';
-        DW3Sessao::setFlash('mensagem', 'usuario cadastrada com sucesso.');
-        $this->redirecionar(URL_RAIZ);/*verificar para tornar msg flash */
+        if ($usuario->isValido()){
+            $usuario->salvar();
+            DW3Sessao::setFlash('mensagem', 'usuario cadastrada com sucesso.');
+            $this->redirecionar(URL_RAIZ);
+        } else {
+            $this->setErros($usuario->getValidacaoErros());
+            $this->visao('usuarios/criar.php', [
+                'mensagem' => DW3Sessao::getFlash('mensagem', null)
+            ]);
+        }
+        
     }
+
 
     // FAZER
     public function usuariosMeusComentarios()

@@ -18,7 +18,7 @@ class ReceitasControlador extends Controlador
 
     public function criar()
     {
-        $this->verificarLogado();
+        $this->verificarLogado(false);
         $this->visao('receitas/criar.php', [
             'usuario' => $this->getUsuario(),
             'mensagem' => DW3Sessao::getFlash('mensagem', null)

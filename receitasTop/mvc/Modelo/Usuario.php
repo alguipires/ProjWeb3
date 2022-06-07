@@ -6,7 +6,7 @@ use \Framework\DW3BancoDeDados;
 
 class Usuario extends Modelo
 {
-    const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ?';
+    const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ? LIMIT 1';
     const BUSCAR_EMAIL = 'SELECT * FROM usuarios WHERE email = ?';
     const INSERIR = 'INSERT INTO usuarios(nome, email, senha, admin) VALUES (?, ?, ?, ?)';
     private $id;
@@ -71,9 +71,22 @@ class Usuario extends Modelo
         $this->inserir();
     }
 
+    //metodo sobre escrito do controlador
+    protected function verificarErros()
+    {
+        if (strlen($this->nome) < 3) {
+            $this->setErroMensagem('nome', 'Deve ter no mínimo 3 caracteres.');
+        }
+        if (strlen($this->email) < 4) {
+            $this->setErroMensagem('email', 'Deve ter no mínimo 4 caracteres.');
+        }
+        if (strlen($this->senhaPlana) < 4) {
+            $this->setErroMensagem('senha', 'Deve ter no mínimo 4 caracteres.');
+        }
+    }
+
     public function inserir()
     {
-        
         DW3BancoDeDados::getPdo()->beginTransaction();
         $comando = DW3BancoDeDados::prepare(self::INSERIR);
         $comando->bindValue(1, $this->nome, PDO::PARAM_STR);

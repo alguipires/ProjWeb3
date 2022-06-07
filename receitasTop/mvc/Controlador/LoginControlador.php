@@ -18,13 +18,8 @@ class LoginControlador extends Controlador
         $usuario = Usuario::buscarEmail($_POST['email']);
         if ($usuario && $usuario->verificarSenha($_POST['senha'])) {
             DW3Sessao::set('usuario', $usuario->getId());
-            if ($usuario->isAdmin()) {
-                DW3Sessao::setFlash('mensagem', 'usuario ADM logado com sucesso.');
-                $this->redirecionar(URL_RAIZ);
-            } else {
-                DW3Sessao::setFlash('mensagem', 'usuario logado com sucesso.');
-                $this->redirecionar(URL_RAIZ);
-            }
+            DW3Sessao::setFlash('mensagem', 'usuario logado com sucesso.');
+            $this->redirecionar(URL_RAIZ);
         } else {
             $this->setErros(['login' => 'Usuário ou senha inválido.']);
             $this->visao('login/criar.php', [
