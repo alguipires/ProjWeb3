@@ -27,3 +27,17 @@
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+function criaArray() {
+
+    var dados = $('.chips').material_chip('data');
+    console.log("array ingredientes" + dados);
+
+    var x = document.getElementById("ingrediente");
+    x.value = dados;
+}
+$('btn-submit').click(function(){
+    var dados = $('.chips').material_chip('data');
+    console.log(dados);
+    console.log("dadosssss");
+});

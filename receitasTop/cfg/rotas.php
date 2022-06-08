@@ -44,7 +44,7 @@ $rotas = [
     ],
 
     '/receitas/?' => [
-        'GET' => '\Controlador\ReceitasControlador#index', /*index- ´pagina para listagem de uma receita*/
+        'GET' => '\Controlador\ReceitasControlador#mostrar', /*mostrar - ´pagina para listagem de uma receita*/
         'PATCH' => '\Controlador\ReceitasControlador#atualizar', /*atualizar - busca e edita a receita */
         'DELETE' => '\Controlador\ReceitasControlador#destruir', /*deleta a receita */
     ],

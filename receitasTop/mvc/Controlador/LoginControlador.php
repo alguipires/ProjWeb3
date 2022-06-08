@@ -16,6 +16,7 @@ class LoginControlador extends Controlador
     public function armazenar()
     {
         $usuario = Usuario::buscarEmail($_POST['email']);
+
         if ($usuario && $usuario->verificarSenha($_POST['senha'])) {
             DW3Sessao::set('usuario', $usuario->getId());
             DW3Sessao::setFlash('mensagem', 'usuario logado com sucesso.');

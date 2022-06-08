@@ -1,8 +1,12 @@
 <?php
+
 namespace Modelo;
 
 use \PDO;
 use \Framework\DW3BancoDeDados;
+use \Framework\DW3ImagemUpload;
+use \Framework\DW3Sessao;
+
 
 class Receita extends Modelo
 {
@@ -21,7 +25,6 @@ class Receita extends Modelo
     private $usuario_id;
 
     public function __construct(
-        $id = null,
         $titulo = null,
         $tempoPreparo = null,
         $dataPublicacao = null,
@@ -29,9 +32,9 @@ class Receita extends Modelo
         $fotos = null,
         $ingrediente = null,
         $comoFazer = null,
-        $usuario_id = null
+        $usuario_id = null,
+        $id = null
     ) {
-        $this->id = $id;
         $this->titulo = $titulo;
         $this->tempoPreparo = $tempoPreparo;
         $this->dataPublicacao = $dataPublicacao;
@@ -40,6 +43,7 @@ class Receita extends Modelo
         $this->ingrediente = $ingrediente;
         $this->comoFazer = $comoFazer;
         $this->usuario_id = $usuario_id;
+        $this->id = $id;
     }
 
     public function getId()
@@ -95,14 +99,26 @@ class Receita extends Modelo
         return $this->curtidas = $curtidas;
     }
 
-    public function getFotos()
-    {
-        return $this->fotos;
-    }
-
     public function setFotos($fotos)
     {
         return $this->fotos = $fotos;
+    }
+
+    public function getFotos()
+    {
+        $FotosNome = "{$this->id}.png";
+        if (!DW3ImagemUpload::existe($FotosNome)) {
+            $FotosNome = 'padrao.png';
+        }
+        return $FotosNome;
+    }
+
+    private function salvarImagem()
+    {
+        if (DW3ImagemUpload::isValida($this->fotos)) {
+            $nomeCompleto = PASTA_PUBLICO . "img/{$this->id}.png";
+            DW3ImagemUpload::salvar($this->fotos, $nomeCompleto);
+        }
     }
 
     public function getIngrediente()
@@ -130,13 +146,14 @@ class Receita extends Modelo
         return $this->usuario_id;
     }
 
-    /*public function getUsuario()
+    /*METODOS QUE TALVEZ SEJAM USADOS COMO EXEMPLOS
+    public function getUsuario()
     {
         if ($this->usuario == null) {
             $this->usuario = Usuario::buscarId($this->usuarioId);
         }
         return $this->usuario;
-    }*/
+    }
 
     public function setDataIncidente($dataIncidente)
     {
@@ -150,12 +167,27 @@ class Receita extends Modelo
     public function setDataAtendimento()
     {
         $this->dataAtendimento = date('Y-m-d h:i:s');
+    }*/
+
+    protected function verificarErros()
+    {
+        /*if (strlen($this->email) < 3) {
+            $this->setErroMensagem('email', 'Deve ter no mínimo 3 caracteres.');
+        }
+        if (strlen($this->senhaPlana) < 3) {
+            $this->setErroMensagem('senha', 'Deve ter no mínimo 3 caracteres.');
+        }*/
+        if (DW3ImagemUpload::existeUpload($this->foto)
+            && !DW3ImagemUpload::isValida($this->foto)) {
+            $this->setErroMensagem('foto', 'Deve ser de no máximo 500 KB.');
+        }
     }
 
     public function salvar()
     {
         if ($this->id == null) {
             $this->inserir();
+            $this->salvarImagem();
         } else {
             $this->atualizar();
         }
@@ -163,13 +195,25 @@ class Receita extends Modelo
 
     public function inserir()
     {
+        //DEBUG TESTE
+        //echo 'ID===' . $usuario->id;
+        echo 'NOME===' . $this->titulo;
+        echo 'TEMPO PREPARO===' . $this->tempoPreparo;
+        echo 'DATA PUB===' . $this->dataPublicacao;//colocar data atul do srv
+        echo 'CURTIDAS===' .$this->curtidas;
+        echo 'FOTOS===' .$this->fotos;
+        echo 'INGREDIENTES===' .$this->ingrediente;
+        echo 'COMO FAZER===' .$this->comoFazer;
+        echo 'ID-USUARIO===' .$this->usuario_id = DW3Sessao::get('usuario'); //pega id do usuario a sessão
+        exit;
+
         DW3BancoDeDados::getPdo()->beginTransaction();
         $comando = DW3BancoDeDados::prepare(self::INSERIR);
         $comando->bindValue(1, $this->titulo, PDO::PARAM_STR);
-        $comando->bindValue(2, $this->tempoPreparo, PDO::PARAM_STR);
+        $comando->bindValue(2, $this->tempoPreparo, PDO::PARAM_INT);
         $comando->bindValue(3, $this->dataPublicacao, PDO::PARAM_STR);
-        $comando->bindValue(4, $this->curtidas, PDO::PARAM_STR);
-        $comando->bindValue(5, $this->fotos, PDO::PARAM_STR);
+        $comando->bindValue(4, $this->curtidas, PDO::PARAM_INT);
+        $comando->bindValue(5, $this->fotos, PDO::PARAM_INT);
         $comando->bindValue(6, $this->ingrediente, PDO::PARAM_STR);
         $comando->bindValue(7, $this->comoFazer, PDO::PARAM_STR);
         $comando->bindValue(8, $this->usuario_id, PDO::PARAM_INT);
@@ -178,6 +222,7 @@ class Receita extends Modelo
         DW3BancoDeDados::getPdo()->commit();
     }
 
+    //METODO NÃO IMPLEMENTADO -- FAZER!!!!
     public function atualizar()
     {
         $comando = DW3BancoDeDados::prepare(self::ATUALIZAR);
@@ -186,13 +231,14 @@ class Receita extends Modelo
         $comando->execute();
     }
 
-    /*public static function buscarId($id)
+    //METODO NÃO IMPLEMENTADO -- FAZER!!!!
+    public static function buscarId($id)
     {
         $comando = DW3BancoDeDados::prepare(self::BUSCAR_ID);
         $comando->bindValue(1, $id, PDO::PARAM_INT);
         $comando->execute();
         $registro = $comando->fetch();
-        return new Reclamacao(
+        return new Receita(
             $registro['data_incidente'],
             $registro['local'],
             $registro['descricao'],
@@ -201,20 +247,4 @@ class Receita extends Modelo
             $registro['data_atendimento']
         );
     }
-
-    public static function buscarNaoAtendidos()
-    {
-        $registros = DW3BancoDeDados::query(self::BUSCAR_NAO_ATENDIDOS);
-        $reclamacoes = [];
-        foreach ($registros as $registro) {
-            $reclamacoes[] = new Reclamacao(
-                $registro['data_incidente'],
-                $registro['local'],
-                $registro['descricao'],
-                $registro['usuario_id'],
-                $registro['id']
-            );
-        }
-        return $reclamacoes;
-    }*/
 }
