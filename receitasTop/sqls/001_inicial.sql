@@ -29,8 +29,8 @@ CREATE TABLE receitas (
     id INT NOT NULL AUTO_INCREMENT,
     titulo VARCHAR(255) NOT NULL,
     tempoPreparo INT (3) NOT NULL,
-    dataPublicacao TIMESTAMP NOT NULL,
-    curtidas INT (3) NOT NULL DEFAULT 0,
+    dataPublicacao DATE NOT NULL,
+    /*curtidas INT (3) NOT NULL DEFAULT 0,*/
     fotos INT NOT NULL,
     ingrediente TEXT NOT NULL,
     comoFazer TEXT NOT NULL,

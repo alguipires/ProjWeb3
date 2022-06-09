@@ -22,10 +22,10 @@
                 <div class="file-field input-field col m12 s12">
                     <div class="btn">
                         <span>File</span>
-                        <input type="file">
+                        <input type="file"  class="validate <?= $this->getErroCss('fotos') ?>" id="fotos" name="fotos">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate <?= $this->getErroCss('fotos') ?>" id="fotos" name="fotos" type="text">
+                        <input class="file-path validate" type="text">
                         <?php $this->incluirVisao('util/formErro.php', ['campo' => 'fotos']) ?>
                     </div>
                 </div>
@@ -43,16 +43,11 @@
 
             <!--Ingredientes-->
             <!--DESENVOLVER CODE PARA PASSAR DE CHIPS PARA O PHP EM POST-->
-            <
-
             <div class="row">
                 <div class="chips chips-placeholder input-field col s12" value="<?= $this->getPost('ingrediente') ?>" name="ingrediente1" id="ingrediente1" class="validate <?= $this->getErroCss('ingrediente') ?>"></div>
                 <?php $this->incluirVisao('util/formErro.php', ['campo' => 'ingrediente']) ?>
+                <input type="hidden" id="ingrediente" name="ingrediente" value="">
             </div>
-
-             <input type="hidden" id="ingrediente" name="ingrediente" value="">
-
-
 
             <!--Como fazer-->
             <div class="row">
@@ -63,10 +58,9 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="input-field col s12">
-                    <button type="" id="btn-submit" name="btn-submit" class="btn waves-effect blue darken-4 white-text">Enviar<i class="material-icons right">send</i></button>
+                    <button type="submit" id="btn-submit" name="btn-submit" class="btn waves-effect blue darken-4 white-text">Enviar<i class="material-icons right">send</i></button>
                 </div>
             </div>
         </form>
