@@ -16,17 +16,32 @@ class ReceitasControlador extends Controlador
     }
 
     //METODO NÃO IMPLEMENTADO -- FAZER!!!!
-    /*public function mostrar($id)
+    public function mostrar($id)
     {
         $receita = Receita::buscarId($id);
+
+        /*//DEBUG TESTE
+        echo 'ID====' . $receita->getId();
+        echo 'NOME===' . $receita->getTitulo();
+        echo 'TEMPO PREPARO===' . $receita->getTempoPreparo();
+        echo 'DATA PUB===' . $receita->getDataPublicacao();
+        echo 'FOTOS===' . $receita->getFotos();
+        echo 'INGREDIENTES===' . $receita->getIngrediente();
+        echo 'COMO FAZER===' . $receita->getComoFazer();
+        echo 'ID-USUARIO===' . $receita->getUsuario_id(); 
+        exit;*/
+
+
+
         $this->visao('receitas/mostrar.php', [
-            'contato' => $receita
+            'receita' => $receita,
+            'nomeUsuario' => $receita->getNomeUsuario(),
+            'mensagem' => DW3Sessao::getFlash('mensagem', null)
         ]);
-    }*/
+    }
 
     public function criar()
     {
-
         $this->verificarLogado();
         $this->visao('receitas/criar.php', [
             'usuario' => $this->getUsuario(),
@@ -38,14 +53,10 @@ class ReceitasControlador extends Controlador
     public function armazenar()
     {
         $this->verificarLogado();
-
         //echo 'LOG controlador id user...' . $this->getUsuario()->getId();
         //echo 'LOG controlador id user PELO DW3SESSAO...' . DW3Sessao::get('usuario');
-
-
         $foto = array_key_exists('fotos', $_FILES) ? $_FILES['fotos'] : null;
        // echo 'LOG controlador foto...' . $foto;
-
         $data = date('Y/m/d');
         //echo 'dATA LOG....' . $data;
         $receita = new Receita(
@@ -58,10 +69,6 @@ class ReceitasControlador extends Controlador
             $this->getUsuario()->getId()
              
         );
-        //$receita->salvar();
-        //DW3Sessao::setFlash('mensagem', 'receita cadastrada com sucesso.');
-        //$this->redirecionar(URL_RAIZ . 'receitas/criar');
-
         //FAZER VALIDAÇÃO
         if ($receita->isValido()) {
             $receita->salvar();

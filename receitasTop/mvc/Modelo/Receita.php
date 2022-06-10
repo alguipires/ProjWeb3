@@ -6,15 +6,15 @@ use \PDO;
 use \Framework\DW3BancoDeDados;
 use \Framework\DW3ImagemUpload;
 use \Framework\DW3Sessao;
-
+use \Modelo\Usuario;
 
 class Receita extends Modelo
 {
     const BUSCAR_ID = 'SELECT * FROM receitas WHERE id = ?';
     //const BUSCAR_NAO_ATENDIDOS = 'SELECT * FROM receitas WHERE data_atendimento IS NULL ORDER BY id';
     const INSERIR = 'INSERT INTO receitas(titulo, tempoPreparo, dataPublicacao, fotos, ingrediente, comoFazer, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    //const ATUALIZAR = 'UPDATE receitas SET data_atendimento = ? WHERE id = ?';
-    private $id;
+    const ATUALIZAR = 'UPDATE receitas SET titulo = ?, tempoPreparo = ?, dataPublicacao = ?, fotos = ?, ingrediente = ?, comoFazer = ?, usuario_id = ?,  WHERE id = ?';
+    
     private $titulo;
     private $tempoPreparo;
     private $dataPublicacao;
@@ -22,6 +22,7 @@ class Receita extends Modelo
     private $ingrediente;
     private $comoFazer;
     private $usuario_id;
+    private $id;
 
     public function __construct(
         $titulo = null,
@@ -73,10 +74,10 @@ class Receita extends Modelo
         return $this->dataPublicacao;
     }
 
-    public function setDataPublicacao()
+    /*public function setDataPublicacao()
     {
-        return $this->dataPublicacao = date('d/m/Y');
-    }
+        return $this->dataPublicacao = date('Y/m/d');
+    }*/
 
     public function getDataPublicacaoFormatada()
     {
@@ -133,28 +134,11 @@ class Receita extends Modelo
         return $this->usuario_id;
     }
 
-    /*METODOS QUE TALVEZ SEJAM USADOS COMO EXEMPLOS
-    public function getUsuario()
+    //METODO PARA RETORNAR NOME DO USUARIO CRIADOR DA RECEITA
+    public function getNomeUsuario()
     {
-        if ($this->usuario == null) {
-            $this->usuario = Usuario::buscarId($this->usuarioId);
-        }
-        return $this->usuario;
+        return Usuario::buscarId($this->usuario_id)->getNome();
     }
-
-    public function setDataIncidente($dataIncidente)
-    {
-        $isBrasileiro = preg_match('/(\d\d)\/(\d\d)\/(\d\d\d\d)/', $dataIncidente, $matches);
-        if ($isBrasileiro) {
-            $dataIncidente = "$matches[3]-$matches[2]-$matches[1]";
-        }
-        $this->dataIncidente = $dataIncidente;
-    }
-
-    public function setDataAtendimento()
-    {
-        $this->dataAtendimento = date('Y-m-d h:i:s');
-    }*/
 
     protected function verificarErros()
     {
@@ -217,7 +201,7 @@ class Receita extends Modelo
         $comando->bindValue(1, $this->dataAtendimento, PDO::PARAM_STR);
         $comando->bindValue(2, $this->id, PDO::PARAM_INT);
         $comando->execute();
-    }
+    }*/
 
     //METODO NÃO IMPLEMENTADO -- FAZER!!!!
     public static function buscarId($id)
@@ -227,12 +211,25 @@ class Receita extends Modelo
         $comando->execute();
         $registro = $comando->fetch();
         return new Receita(
-            $registro['data_incidente'],
-            $registro['local'],
-            $registro['descricao'],
+            $registro['titulo'],
+            $registro['tempoPreparo'],
+            $registro['dataPublicacao'],
+            $registro['fotos'],
+            $registro['ingrediente'],
+            $registro['comoFazer'],
             $registro['usuario_id'],
-            $registro['id'],
-            $registro['data_atendimento']
+            $registro['id']
         );
-    }*/
+        /*//DEBUG TESTE
+        echo 'ID====' . $obj->getId();
+        echo 'TITULO===' . $obj->getTitulo();
+        echo 'TEMPO PREPARO===' . $obj->getTempoPreparo();
+        echo 'DATA PUB===' . $obj->getDataPublicacao();
+        echo 'FOTOS===' . $obj->getFotos();
+        echo 'INGREDIENTES===' . $obj->getIngrediente();
+        echo 'COMO FAZER===' . $obj->getComoFazer();
+        echo 'ID-USUARIO===' . $obj->getUsuario_id();
+        exit;
+        return $obj;*/
+    }
 }

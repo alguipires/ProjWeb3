@@ -46,7 +46,7 @@
 <ul id="dropdown1" class="dropdown-content purple darken-1">
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus dados</a></li>
   <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Meus comentarios</a></li>
-  <li><a href="<?= URL_RAIZ . 'usuarios' ?>">Minhas receitas</a></li>
+  <li><a href="<?= URL_RAIZ . '/receitas/1' ?>">Minhas receitas</a></li>
   <li><a href="<?= URL_RAIZ . 'receitas/criar' ?>">Criar receita</a></li>
 </ul>
 
