@@ -174,7 +174,7 @@ class Receita extends Modelo
         /*echo 'NOME===' . $this->titulo;
         echo 'TEMPO PREPARO===' . $this->tempoPreparo;
         echo 'DATA PUB===' . $this->dataPublicacao;//colocar data atul do srv
-        echo 'FOTOS===' .$this->fotos;
+        echo 'FOTOS===' .var_dump($this->fotos);
         echo 'INGREDIENTES===' .$this->ingrediente;
         echo 'COMO FAZER===' .$this->comoFazer;
         echo 'ID-USUARIO===' .$this->usuario_id; 

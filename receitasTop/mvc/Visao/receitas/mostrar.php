@@ -13,35 +13,32 @@
     </div>
 
     <!--Carousel/ coluna direita-->
-    <div id="picturesProd" class="row">
+    <div id="fotosReceita" class="row">
         <!--Linha carousel de fotos-->
         <div class="col s6 m6">
             <div class="carousel carousel-slider">
-                <a class="carousel-item" href="#one!"><img src="assets/resources/img/vitrine/lasanha-ex.jpg"></a>
-                <a class="carousel-item" href="#two!"><img src="assets/resources/img/vitrine/lasanha-ex.jpg"></a>
-                <a class="carousel-item" href="#three!"><img src="assets/resources/img/vitrine/lasanha-ex.jpg"></a>
-                <a class="carousel-item" href="#four!"><img src="assets/resources/img/vitrine/lasanha-ex.jpg"></a>
-                <a class="carousel-item" href="#five!"><img src="assets/resources/img/vitrine/lasanha-ex.jpg"></a>
+                <a class="carousel-item" href="#one!"><img src="<?= URL_IMG . $receita->getFotos() ?>"></a>
+                <!--adicionar outras imagens futuramente-->
             </div>
         </div>
 
         <!--coluna com navegação/ancora, criador, data, tempo preparo, etc-->
         <div class="col s6 m6">
             <div class="row">
-                <div class="chip"><img src="assets/resources/img/vitrine/lasanha-ex.jpg" alt="Contact Person"><?= $nomeUsuario ?></div>
+                <div class="chip"><?= $receita->getNomeUsuario() ?></div>
                 <div class="chip"><i class="material-icons">schedule</i><?= $receita->getTempoPreparo() . ' ' ?> min</div>
-                <div class="chip"><i class="material-icons">publish</i><?= $receita->getDataPublicacao() ?></div>
+                <div class="chip"><i class="material-icons">publish</i><?= $receita->getDataPublicacaoFormatada() ?></div>
             </div>
             <div class="row">
                 <ul class="section table-of-contents">
                     <li>
-                        <a href="#picturesProd" class="active">Fotos</a>
+                        <a href="#fotosReceita" class="active">Fotos</a>
                     </li>
                     <li>
-                        <a href="#ingredients" class="">Ingredientes</a>
+                        <a href="#listaIngrediente" class="">Ingredientes</a>
                     </li>
                     <li>
-                        <a href="#howMake" class="">Como fazer</a>
+                        <a href="#textComoFazer" class="">Como fazer</a>
                     </li>
                     <li>
                         <a href="#comments" class="">Comentarios</a>
@@ -57,37 +54,14 @@
         <input type="hidden" id="ingrediente" name="ingrediente" value="<? $receita->getIngrediente() ?>">
     </div>
 
-    <script>
-        var aux = document.querySelector("#ingrediente");
-        auxb = JSON.parse($("#ingrediente").val());
-        auxc = JSON.stringify(aux);
-        console.log('query logg ' + aux);
-        console.log('json logg ' + auxb);
-        console.log('json logg c ' + auxc);
-
-
-        /*var chipsData = JSON.parse($("#ingrediente").val());
-        console.log('chipsss linha 62 ' + chipsData);
-
-        $('.chips-placeholder').chips({
-            placeholder: 'Enter a tag',
-            secondaryPlaceholder: '+Tag',
-            data: chipsData,
-            onChipAdd: (event, chip) => {
-                var chipsData = M.Chips.getInstance($('.chips')).chipsData;
-                var chipsDataJson = JSON.stringify(chipsData);
-                $("#ingrediente").val(chipsDataJson);
-            },
-            onChipSelect: () => {
-
-            },
-            onChipDelete: () => {
-                var chipsData = M.Chips.getInstance($('.chips')).chipsData;
-                var chipsDataJson = JSON.stringify(chipsData);
-                $("#ingrediente").val(chipsDataJson);
-            }
-        });*/
-    </script>
+    <?php 
+    $aux = $receita->getIngrediente();
+    var_dump($aux);
+    exit; 
+    
+    ?>
+   
+        
 
 
     <!--Linha collapsible Ingredientes, etc-->
@@ -95,7 +69,7 @@
         <div class="col s12 m12">
             <ul class="collapsible popout">
                 <li>
-                    <div id="ingredients" class="collapsible-header"><i class="material-icons">filter_drama</i>Ingredientes</div>
+                    <div id="listaIngrediente" class="collapsible-header"><i class="material-icons">filter_drama</i>Ingredientes</div>
                     <div class="collapsible-body">
                         <ul class="collection">
                             <li class="collection-item"><i class="material-icons">fiber_manual_record</i></li>
@@ -109,7 +83,7 @@
                     </div>
                 </li>
                 <li>
-                    <div id="howMake" class="collapsible-header"><i class="material-icons">filter_drama</i>Como
+                    <div id="textComoFazer" class="collapsible-header"><i class="material-icons">filter_drama</i>Como
                         Fazer</div>
                     <div class="collapsible-body">
                         <span><?= $receita->getComoFazer() ?></span>

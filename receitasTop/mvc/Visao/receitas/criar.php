@@ -7,7 +7,7 @@
     <div class="row">
 
         <!--Nome-->
-        <form action="<?= URL_RAIZ . 'receitas' ?>" method="post" id="form-Receita" class="col s12">
+        <form action="<?= URL_RAIZ . 'receitas' ?>" method="post" id="form-Receita" class="col s12" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">account_circle</i>
@@ -22,10 +22,10 @@
                 <div class="file-field input-field col m12 s12">
                     <div class="btn">
                         <span>File</span>
-                        <input type="file"  class="validate <?= $this->getErroCss('fotos') ?>" id="fotos" name="fotos">
+                        <input type="file" id="fotos" name="fotos">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <input class="file-path validate" type="text" class="validate <?= $this->getErroCss('fotos') ?>">
                         <?php $this->incluirVisao('util/formErro.php', ['campo' => 'fotos']) ?>
                     </div>
                 </div>

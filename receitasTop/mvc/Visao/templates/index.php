@@ -66,23 +66,29 @@
           <li><a href="<?= URL_RAIZ ?>"><i class="material-icons left">search</i></a>
           </li>
           <li><a href="<?= URL_RAIZ . 'dashboard' ?>">ReceitasTop/DashBoard</a></li>
+          
+          <!--BOTÃO PERFIL-->
           <!-- Dropdown Trigger-->
+          <?php if($usuario = $this->getUsuario() != null) : ?>
           <li><a class="dropdown-trigger" href="<?= URL_RAIZ . 'usuarios' ?>" data-target="dropdown1">Meu perfil<i
                 class="material-icons right">arrow_drop_down</i></a>
           </li>
-
-          <!--BOTÃo LOGIN E SAIR-->
-          <li><a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i
-                class="material-icons left">lock</i>Login</a>
-          </li>
-          <li>
+          <!--FIM BOTÃO PERFIL-->
+          <!--BOTÃO SAIR-->
+            <li>
             <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="inline">
                 <input type="hidden" name="_metodo" value="DELETE">
                 <a class="waves-effect waves-light btn purple darken-4" onclick="event.preventDefault(); this.parentNode.submit()" href="">Sair</a>
             </form>
           </li>
-          <!--fim BOTÃo LOGIN E SAIR-->
-
+          <!--FIM BOTÃO SAIR-->
+          <!-- BOTÃO LOGIN-->
+          <?php else: ?>
+            <li>
+            <a class="waves-effect waves-light btn purple darken-4" href="<?= URL_RAIZ . 'login' ?>"><i class="material-icons left">lock</i>Login</a>
+          </li>
+          <?php endif ?>
+          <!--FIM BOTÃO LOGIN-->
         </ul>
       </div>
     </div>

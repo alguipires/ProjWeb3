@@ -15,13 +15,24 @@ class ReceitasControlador extends Controlador
         ]);
     }
 
+    //PAGINAÇÃO FAZER!!!!!!!!!!!!!!
+    private function calcularPaginacao()
+    {
+        /*$pagina = array_key_exists('p', $_GET) ? intval($_GET['p']) : 1;
+        $limit = 4;
+        $offset = ($pagina - 1) * $limit;
+        $mensagens = Receita::buscarTodos($limit, $offset);
+        $ultimaPagina = ceil(Receita::contarTodos() / $limit);
+        return compact('pagina', 'mensagens', 'ultimaPagina');*/
+    }
+
     //METODO NÃO IMPLEMENTADO -- FAZER!!!!
     public function mostrar($id)
     {
+        $this->verificarLogado();
         $receita = Receita::buscarId($id);
-
-        /*//DEBUG TESTE
-        echo 'ID====' . $receita->getId();
+        //DEBUG TESTE
+        /*echo 'ID====' . $receita->getId();
         echo 'NOME===' . $receita->getTitulo();
         echo 'TEMPO PREPARO===' . $receita->getTempoPreparo();
         echo 'DATA PUB===' . $receita->getDataPublicacao();
@@ -30,12 +41,8 @@ class ReceitasControlador extends Controlador
         echo 'COMO FAZER===' . $receita->getComoFazer();
         echo 'ID-USUARIO===' . $receita->getUsuario_id(); 
         exit;*/
-
-
-
         $this->visao('receitas/mostrar.php', [
             'receita' => $receita,
-            'nomeUsuario' => $receita->getNomeUsuario(),
             'mensagem' => DW3Sessao::getFlash('mensagem', null)
         ]);
     }
@@ -49,27 +56,27 @@ class ReceitasControlador extends Controlador
         ]);
     }
 
-    /*parametros como: datadePublicacao, curtidas, usuario-id estão sendo adicionados pelos dados servidor*/
+    /*parametros como: datadePublicacao, usuario-id estão sendo adicionados pelos dados servidor*/
     public function armazenar()
     {
         $this->verificarLogado();
-        //echo 'LOG controlador id user...' . $this->getUsuario()->getId();
-        //echo 'LOG controlador id user PELO DW3SESSAO...' . DW3Sessao::get('usuario');
+        /*echo '<prev>';
+        var_dump($_FILES);
+        exit;*/
         $foto = array_key_exists('fotos', $_FILES) ? $_FILES['fotos'] : null;
-       // echo 'LOG controlador foto...' . $foto;
         $data = date('Y/m/d');
-        //echo 'dATA LOG....' . $data;
+
         $receita = new Receita(
             $_POST['titulo'],
             $_POST['tempoPreparo'],
-            date('Y/m/d'),
-            $this->getUsuario()->getId(),
+            $data,
+            $foto,
             $_POST['ingrediente'],
             $_POST['comoFazer'],
             $this->getUsuario()->getId()
              
         );
-        //FAZER VALIDAÇÃO
+        //VALIDAÇÃO
         if ($receita->isValido()) {
             $receita->salvar();
             DW3Sessao::setFlash('mensagem', 'receita cadastrada com sucesso.');
@@ -82,7 +89,7 @@ class ReceitasControlador extends Controlador
 
     /*public function atualizar($id)
     {
-        $this->verificarLogado(true);
+        $this->verificarLogado();
         $reclamacao = Reclamacao::buscarId($id);
         $reclamacao->setDataAtendimento();
         $reclamacao->salvar();
