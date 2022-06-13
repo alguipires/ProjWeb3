@@ -170,12 +170,12 @@ class Receita extends Modelo
 
     public function inserir()
     {
-        //DEBUG TESTE
-        /*echo 'NOME===' . $this->titulo;
+        /*//DEBUG TESTE
+        echo 'NOME===' . $this->titulo;
         echo 'TEMPO PREPARO===' . $this->tempoPreparo;
         echo 'DATA PUB===' . $this->dataPublicacao;//colocar data atul do srv
         echo 'FOTOS===' .var_dump($this->fotos);
-        echo 'INGREDIENTES===' .$this->ingrediente;
+        echo 'INGREDIENTES===' .var_dump($this->ingrediente);
         echo 'COMO FAZER===' .$this->comoFazer;
         echo 'ID-USUARIO===' .$this->usuario_id; 
         exit;*/

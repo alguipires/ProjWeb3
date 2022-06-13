@@ -52,7 +52,7 @@
             <!--Como fazer-->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea onfocus="insereChips()" id="comoFazer" name="comoFazer" value="<?= $this->getPost('comoFazer') ?>" class="materialize-textarea" class="validate <?= $this->getErroCss('comoFazer') ?>"></textarea>
+                    <textarea id="comoFazer" name="comoFazer" value="<?= $this->getPost('comoFazer') ?>" class="materialize-textarea" class="validate <?= $this->getErroCss('comoFazer') ?>"></textarea>
                     <label for="comoFazer">Descreva aqui passo a passo de como fazer a receita</label>
                     <?php $this->incluirVisao('util/formErro.php', ['campo' => 'comoFazer']) ?>
                 </div>
@@ -60,7 +60,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <button type="submit" id="btn-submit" name="btn-submit" class="btn waves-effect blue darken-4 white-text">Enviar<i class="material-icons right">send</i></button>
+                    <button onclick="insereChips()" type="submit" id="btn-submit" name="btn-submit" class="btn waves-effect blue darken-4 white-text">Enviar<i class="material-icons right">send</i></button>
                 </div>
             </div>
         </form>

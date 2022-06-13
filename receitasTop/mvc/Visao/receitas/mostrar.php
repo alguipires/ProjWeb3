@@ -48,37 +48,16 @@
         </div>
 
     </div>
-    <!--INGREDIENTES CAMPO HIDDEN PARA FAZER CAMBIS-->
-    <div class="row">
-        <div class="chips chips-placeholder input-field col s12" value="" name="ingrediente1" id="ingrediente1" class="validate <?= $this->getErroCss('ingrediente') ?>"></div>
-        <input type="hidden" id="ingrediente" name="ingrediente" value="<? $receita->getIngrediente() ?>">
-    </div>
 
-    <?php 
-    $aux = $receita->getIngrediente();
-    var_dump($aux);
-    exit; 
-    
-    ?>
-   
-        
-
-
-    <!--Linha collapsible Ingredientes, etc-->
+    <!--Linha collapsible INGREDIENTES, COMO FAZER etc-->
     <div class="row">
         <div class="col s12 m12">
             <ul class="collapsible popout">
                 <li>
                     <div id="listaIngrediente" class="collapsible-header"><i class="material-icons">filter_drama</i>Ingredientes</div>
                     <div class="collapsible-body">
-                        <ul class="collection">
-                            <li class="collection-item"><i class="material-icons">fiber_manual_record</i></li>
-                            <li class="collection-item"><i class="material-icons">fiber_manual_record</i>Paprica
-                            </li>
-                            <li class="collection-item"><i class="material-icons">fiber_manual_record</i>Oregano
-                            </li>
-                            <li class="collection-item"><i class="material-icons">fiber_manual_record</i>Molho de
-                                tomate</li>
+                        <!--INGREDIENTES SÃO ADICIONADOS POR JS E JQUERY INTERNO NA ul id="ulIngredientes" PELO CODIGO JS ABAIXO DA PAGINA-->
+                        <ul id="ulIngredientes" class="collection">
                         </ul>
                     </div>
                 </li>
@@ -149,3 +128,18 @@
     <!--Paginação ou e botão voltar-->
 
 </div>
+
+<script>
+    console.log("receendo var php convertendo js e json");
+    var ArrayJs = '<?= $receita->getIngrediente() ?>';
+    var element = window.document.getElementById('ulIngredientes');
+    var ingredientesArray = JSON.parse(ArrayJs);
+    var liConteudo = ``;
+    console.log("listando a array json e montando o html");
+    for (let i = 0; i < ingredientesArray.length; i++) {
+        //console.log("apresentando i" + i + " valor: " + ingredientesArray[i].tag);
+        liConteudo += `<li class="collection-item"><i class="material-icons">fiber_manual_record</i>` + ingredientesArray[i].tag + `</li>`;
+    }
+    console.log("inserindo com append jquery");
+    $("#ulIngredientes").append(liConteudo);
+</script>
