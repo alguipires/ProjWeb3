@@ -146,9 +146,4 @@ class Usuario extends Modelo
 
         return $usuario;
     }
-
-    /*function __toString()
-    {
-        return 'id= ' . $this->id . 'nome= ' . $this->nome . 'email= ' . $this->email . 'senha= ' . $this->senha . 'senhaPlana= ' . $this->senhaPlana . 'admin= ' . $this->admin;
-    }*/
 }

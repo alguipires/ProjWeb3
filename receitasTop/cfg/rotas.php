@@ -1,7 +1,7 @@
 <?php
 
 $rotas = [
-    /*comum */
+    /*COMUM */
     '/' => [
         'GET' => '\Controlador\RaizControlador#index',
     ],
@@ -16,7 +16,7 @@ $rotas = [
         'DELETE' => '\Controlador\LoginControlador#destruir', /* \destruir- vai deslogar o usuario */
     ],
     
-    /*usuarrios */
+    /*USUARIOS */
     '/usuarios' => [
         'POST' => '\Controlador\UsuariosControlador#armazenar', /*armazenar - qunado cria o usuario */
     ],
@@ -29,12 +29,7 @@ $rotas = [
         'PATCH' => '\Controlador\UsuariosControlador#atualizar', /*atualizar - busca e edita o usuario */
     ],
     
-    //comentarios verififcar
-    '/usuarios/?/usuariosMeusComentarios' => [
-        'PATCH' => '\Controlador\UsuariosControlador#usuariosMeusComentarios', /*atualizar - busca e edita o comentario */
-    ],
-    
-    /*receitas */
+    /*RECEITAS */
     '/receitas' => [
         'POST' => '\Controlador\ReceitasControlador#armazenar', /*armazenar - quando uma cria a receita */
     ],
@@ -47,6 +42,17 @@ $rotas = [
         'GET' => '\Controlador\ReceitasControlador#mostrar', /*mostrar - ´pagina para listagem de uma receita*/
         'PATCH' => '\Controlador\ReceitasControlador#atualizar', /*atualizar - busca e edita a receita */
         'DELETE' => '\Controlador\ReceitasControlador#destruir', /*deleta a receita */
+    ],
+
+
+    /*COMENTARIOS */
+     //comentarios verificar
+     '/usuarios/?/usuariosMeusComentarios' => [
+        'PATCH' => '\Controlador\ComentariosControlador#criar', /*atualizar - busca e edita o comentario */
+    ],
+
+    '/comentarios' => [
+        'POST' => '\Controlador\ComentariosControlador#armazenar', /*armazenar - qunado cria o comentario */
     ],
 
     //talvez criar uma rota para listar as receitas criadas pelo usuario uma vitrine com as receitas somente do usuario

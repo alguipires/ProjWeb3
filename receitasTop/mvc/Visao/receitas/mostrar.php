@@ -76,30 +76,12 @@
     <div class="row" id="comments">
         <div class="col s12 m12">
             <ul class="collection">
-                <li class="collection-item avatar">
-                    <img src="assets/resources/img/vitrine/lasanha-ex.jpg" alt="Postado Por teste" class="circle">
-                    <span class="title"><strong>Deliciosaa!</strong></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, voluptatum, possimus
-                        maxime consequatur soluta dolor eaque animi mollitia, tempora fuga ea quae? Laudantium
-                        labore, quis earum autem non quae tenetur.</p>
-                    <!--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>-->
-                </li>
-                <li class="collection-item avatar">
-                    <img src="assets/resources/img/vitrine/lasanha-ex.jpg" alt="Postado Por teste" class="circle">
-                    <span class="title"><strong>Super rapido e ficou otimo!</strong></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, voluptatum, possimus
-                        maxime consequatur soluta dolor eaque animi mollitia, tempora fuga ea quae? Laudantium
-                        labore, quis earum autem non quae tenetur.</p>
-                    <!--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>-->
-                </li>
-                <li class="collection-item avatar">
-                    <img src="assets/resources/img/vitrine/lasanha-ex.jpg" alt="Postado Por teste" class="circle">
-                    <span class="title"><strong>Ameii</strong></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, voluptatum, possimus
-                        maxime consequatur soluta dolor eaque animi mollitia, tempora fuga ea quae? Laudantium
-                        labore, quis earum autem non quae tenetur.</p>
-                    <!--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>-->
-                </li>
+                <?php foreach ($comentarios as $comentarios) : ?>
+                    <li class="collection-item avatar">
+                        <span class="title"><strong><?= $comentarios->getTitulo() ?></strong></span>
+                        <p><?= $comentarios->getComentario() ?></p>
+                    </li>
+                <?php endforeach ?>
             </ul>
         </div>
 
@@ -107,15 +89,15 @@
         <div id="divComments" class="col s12 m12">
             <a class="waves-effect waves-light btn"><i class="material-icons left">comment</i>Comentar</a>
 
-            <form class="col s12">
+            <form action="<?= URL_RAIZ . 'comentarios' ?>" method="post" id="form-Comentario" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textTitle" class="materialize-textarea"></textarea>
-                        <label for="textTitle">Titulo</label>
+                        <textarea id="titulo" name="titulo" class="materialize-textarea"></textarea>
+                        <label for="titulo">Titulo</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="textComment" class="materialize-textarea"></textarea>
-                        <label for="textComment">Comentario</label>
+                        <textarea id="comentario" name="comentario" class="materialize-textarea"></textarea>
+                        <label for="comentario">Comentario</label>
                     </div>
                 </div>
 

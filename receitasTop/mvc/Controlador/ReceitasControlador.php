@@ -3,6 +3,7 @@
 namespace Controlador;
 
 use \Modelo\Receita;
+use \Modelo\Comentario;
 use \Framework\DW3Sessao;
 
 class ReceitasControlador extends Controlador
@@ -26,11 +27,11 @@ class ReceitasControlador extends Controlador
         return compact('pagina', 'mensagens', 'ultimaPagina');*/
     }
 
-    //METODO NÃO IMPLEMENTADO -- FAZER!!!!
     public function mostrar($id)
     {
         $this->verificarLogado();
         $receita = Receita::buscarId($id);
+        $comentarios = Comentario::buscarReceitaId($id);
         //DEBUG TESTE
         /*echo 'ID====' . $receita->getId();
         echo 'NOME===' . $receita->getTitulo();
@@ -41,8 +42,10 @@ class ReceitasControlador extends Controlador
         echo 'COMO FAZER===' . $receita->getComoFazer();
         echo 'ID-USUARIO===' . $receita->getUsuario_id(); 
         exit;*/
+        DW3Sessao::set('receita', $receita->getId());
         $this->visao('receitas/mostrar.php', [
             'receita' => $receita,
+            'comentarios' => $comentarios,
             'mensagem' => DW3Sessao::getFlash('mensagem', null)
         ]);
     }
