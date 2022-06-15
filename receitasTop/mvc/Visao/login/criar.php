@@ -1,4 +1,4 @@
-<!--pagina de login -->
+   <!--PAGINA DE LOGIN-->
 
 <style>
         .input-field input[type=date]:focus+label,
@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="z-depth-1 grey lighten-4 row div-login">
 
-                    <form class="col s12" method="post">
+                    <form action="<?= URL_RAIZ . 'login' ?>" method="post" class="col s12">
                         <div class='row'>
                             <div class='col s12'>
                             </div>
@@ -38,19 +38,22 @@
 
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <input id="input-email" type="email" class="validate" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" required>
+                                <input id="email" type="email" name="email" class="validate <?= $this->getErroCss('login') ?>" maxlength="40" pattern="^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$" placeholder="seu@email.com" onfocus="ganhaFocus('input-email')" onblur="perdeFocus('input-email')" value="<?= $this->getPost('email') ?>" required>
                                 <label for='email'>Preencha com seu E-mail</label>
                             </div>
                         </div>
 
                         <div class='row'>
                             <div class='input-field col s12'>
-                                <input class='validate' type='password' name='password' id='password' required/>
-                                <label for='password'>Preencha com sua senha</label>
+                                <input class="validate <?= $this->getErroCss('login') ?>" type='password' name="senha" id="senha" required/>
+                                <label for='senha'>Preencha com sua senha</label>
+                            </div>
+                            <div class="card-panel text-center col s12">
+                                <?php $this->incluirVisao('util/formErro.php', ['campo' => 'login']) ?>
                             </div>
                             <label id="flutuar-esqueceu-senha">
-                                <a class="blue-text" href="cadUser.html"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>
-                                <a class="blue-text" href="forgotAcess.html"><b>Esqueci minha senha?</b></a>
+                                <a class="blue-text" href="<?= URL_RAIZ . 'usuarios/criar' ?>"><b>Crie uma conta&nbsp;&nbsp;&nbsp;</b></a>
+                                <a class="blue-text" href="#"><b>Esqueci minha senha?</b></a>
                             </label>
                         </div>
                         </br>

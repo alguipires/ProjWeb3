@@ -6,31 +6,33 @@ use \Framework\DW3Sessao;
 
 class LoginControlador extends Controlador
 {
-    
-     public function login()
+    public function criar()
     {
-        $this->visao('login/login.php');
+        $this->visao('login/criar.php', [
+            'mensagem' => DW3Sessao::getFlash('mensagem', null)
+        ]);
     }
-    /*
 
     public function armazenar()
     {
-        $usuario = Usuario::buscarNome($_POST['nome']);
+        $usuario = Usuario::buscarEmail($_POST['email']);
+
         if ($usuario && $usuario->verificarSenha($_POST['senha'])) {
             DW3Sessao::set('usuario', $usuario->getId());
-            if ($usuario->isAdmin()) {
-                $this->redirecionar(URL_RAIZ . 'reclamacoes');
-            } else {
-                $this->redirecionar(URL_RAIZ . 'reclamacoes/criar');
-            }
+            DW3Sessao::setFlash('mensagem', 'usuario logado com sucesso.');
+            $this->redirecionar(URL_RAIZ);
         } else {
-            $this->visao('login/criar.php');
+            $this->setErros(['login' => 'Usuário ou senha inválido.']);
+            $this->visao('login/criar.php', [
+                'mensagem' => DW3Sessao::setFlash('mensagem', null)
+            ]);
         }
     }
 
     public function destruir()
     {
         DW3Sessao::deletar('usuario');
-        $this->redirecionar(URL_RAIZ . 'login');
-    } */
+        DW3Sessao::setFlash('mensagem', 'usuario deslogado com sucesso.');
+        $this->redirecionar(URL_RAIZ);
+    }
 }
