@@ -1,3 +1,5 @@
+/*LEIA O README ANTES, SENHA USUARIO admin@admin.com é: admin*/
+
 CREATE DATABASE projweb3 COLLATE 'utf8_unicode_ci';
 
 CREATE TABLE IF NOT EXISTS usuarios (
