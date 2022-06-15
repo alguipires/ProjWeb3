@@ -11,10 +11,13 @@ use \Modelo\Usuario;
 class Receita extends Modelo
 {
     const BUSCAR_ID = 'SELECT * FROM receitas WHERE id = ?';
-    //const BUSCAR_NAO_ATENDIDOS = 'SELECT * FROM receitas WHERE data_atendimento IS NULL ORDER BY id';
+    const BUSCAR_TODOS = 'SELECT * FROM receitas ORDER BY dataPublicacao LIMIT ? OFFSET ?';
+    const CONTAR_TODOS = 'SELECT count(id) FROM receitas';
     const INSERIR = 'INSERT INTO receitas(titulo, tempoPreparo, dataPublicacao, fotos, ingrediente, comoFazer, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    const ATUALIZAR = 'UPDATE receitas SET titulo = ?, tempoPreparo = ?, dataPublicacao = ?, fotos = ?, ingrediente = ?, comoFazer = ?, usuario_id = ?,  WHERE id = ?';
-    
+
+    //const ATUALIZAR = 'UPDATE receitas SET titulo = ?,... WHERE id = ?';
+    //const DELETAR = 'DELETE FROM receitas WHERE id = ?';
+
     private $titulo;
     private $tempoPreparo;
     private $dataPublicacao;
@@ -231,5 +234,35 @@ class Receita extends Modelo
         echo 'ID-USUARIO===' . $obj->getUsuario_id();
         exit;
         return $obj;*/
+    }
+
+    public static function buscarTodos($limit = 6, $offset = 0)
+    {
+        $comando = DW3BancoDeDados::prepare(self::BUSCAR_TODOS);
+        $comando->bindValue(1, $limit, PDO::PARAM_INT);
+        $comando->bindValue(2, $offset, PDO::PARAM_INT);
+        $comando->execute();
+        $registros = $comando->fetchAll();
+        $objetos = [];
+        foreach ($registros as $registro) {
+            $objetos[] = new Receita(
+                $registro['titulo'],
+                $registro['tempoPreparo'],
+                $registro['dataPublicacao'],
+                $registro['fotos'],
+                $registro['ingrediente'],
+                $registro['comoFazer'],
+                $registro['usuario_id'],
+                $registro['id']
+            );
+        }
+        return $objetos;
+    }
+
+    public static function contarTodos()
+    {
+        $registros = DW3BancoDeDados::query(self::CONTAR_TODOS);
+        $total = $registros->fetch();
+        return intval($total[0]);
     }
 }

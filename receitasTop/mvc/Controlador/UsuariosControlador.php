@@ -6,6 +6,13 @@ use \Framework\DW3Sessao;
 
 class UsuariosControlador extends Controlador
 {
+    public function criar()
+    {
+        $this->visao('usuarios/criar.php', [
+            'mensagem' => DW3Sessao::getFlash('mensagem', null)
+        ]);
+
+    }
 
     public function armazenar()
     {

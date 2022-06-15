@@ -10,10 +10,10 @@ class Usuario extends Modelo
     const BUSCAR_ID = 'SELECT * FROM usuarios WHERE id = ? LIMIT 1';
     const BUSCAR_POR_EMAIL = 'SELECT * FROM usuarios WHERE email = ? LIMIT 1';
     const INSERIR = 'INSERT INTO usuarios(nome, email, senha) VALUES (?, ?, ?)';
+    const CONTAR_TODOS = 'SELECT count(id) FROM usuarios';
 
-    //const BUSCAR_TODOS = 'SELECT * FROM contatos ORDER BY nome';
-    //const ATUALIZAR = 'UPDATE contatos SET nome = ?, endereco = ?, telefone1 = ?, telefone2 = ?, telefone3 = ? WHERE id = ?';
-    //const DELETAR = 'DELETE FROM contatos WHERE id = ?';
+    //const ATUALIZAR = 'UPDATE usuarios SET nome = ?,... WHERE id = ?';
+    //const DELETAR = 'DELETE FROM usuarios WHERE id = ?';
 
     private $id;
     private $nome;
@@ -145,5 +145,12 @@ class Usuario extends Modelo
         exit;*/
 
         return $usuario;
+    }
+
+    public static function contarTodos()
+    {
+        $registros = DW3BancoDeDados::query(self::CONTAR_TODOS);
+        $total = $registros->fetch();
+        return intval($total[0]);
     }
 }

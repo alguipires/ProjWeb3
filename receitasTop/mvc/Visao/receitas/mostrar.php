@@ -82,6 +82,11 @@
                         <p><?= $comentarios->getComentario() ?></p>
                     </li>
                 <?php endforeach ?>
+                <!--IMPLEMENTAR COMENTARIO DEFAULT EM CASO DE NÃO EXISTIR COMENTARIOS-->
+                <!--<li class="collection-item avatar">
+                    <span class="title"><strong>Não tem comentarios</strong></span>
+                    <p>Crie um comentario!</p>
+                </li>-->
             </ul>
         </div>
 

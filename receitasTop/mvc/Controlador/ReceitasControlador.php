@@ -8,24 +8,13 @@ use \Framework\DW3Sessao;
 
 class ReceitasControlador extends Controlador
 {
-    public function index()
+    /*public function index()
     {
         $this->visao('receitas/index.php', [
             'usuario' => $this->getUsuario(),
             'mensagem' => DW3Sessao::getFlash('mensagem', null)
         ]);
-    }
-
-    //PAGINAÇÃO FAZER!!!!!!!!!!!!!!
-    private function calcularPaginacao()
-    {
-        /*$pagina = array_key_exists('p', $_GET) ? intval($_GET['p']) : 1;
-        $limit = 4;
-        $offset = ($pagina - 1) * $limit;
-        $mensagens = Receita::buscarTodos($limit, $offset);
-        $ultimaPagina = ceil(Receita::contarTodos() / $limit);
-        return compact('pagina', 'mensagens', 'ultimaPagina');*/
-    }
+    }*/
 
     public function mostrar($id)
     {
