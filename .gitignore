@@ -1,4 +1,5 @@
-# Ignore as imagens de upload COLOCAR > **/img/*
+# Ignore as imagens de upload COLOCAR >
+**/img/*
 
 
 # Não ignore as imagens do sistema
