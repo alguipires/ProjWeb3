@@ -1,10 +1,9 @@
 # ProjWeb3
-ra: 1931784
 Proj-Web3-ReceitasTop Projeto de Web 3 UTFPR-Guarapuava, aplicação site gerenciador de receitas, com materialize, php 7, mysql, apache, jquery. Possivel cadastrar, login, criar receitas, comentar, editar.
 
 para funcinar com os pré cadastros:
 1º rodar a query montando somente as tabelas do banco
-2º apos rodar separadamente as qeury de inserção no banco.
+2º apos rodar separadamente as query de inserção no banco.
 3º verificar se baixou as img com os id (1.png ao 12.png)
 4º o sistema ja vai rodar com receitas, usuario e comentarios.
 
